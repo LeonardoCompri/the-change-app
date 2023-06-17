@@ -6,6 +6,7 @@ import Admin from './admin/index'
 import Inicio from "../pages/Inicio"
 import Login from "../pages/Login.vue"
 import Cadastro from "../pages/Cadastro.vue"
+import Verificacao from "../pages/Verificacao.vue"
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ export default new VueRouter({
       path: '/cadastro',
       name: 'cadastro',
       component: Cadastro
+    },
+    {
+      path: '/verificacao',
+      name: 'verificacao',
+      component: Verificacao
     }
   ]
 })

@@ -64,8 +64,7 @@
     name: 'Cadastro',
     data () {
       return {
-        switch1: true,
-        showPass: false
+
       }
     },
     methods: {
