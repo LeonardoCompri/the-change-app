@@ -1,18 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar app v-show="false">
-      <v-app-bar-nav-icon
-        @click.stop="drawer = !drawer"
-        v-if="showMenu()"
-      ></v-app-bar-nav-icon>
+    <v-app-bar app v-if="showMenu()">
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        target="_blank"
-        @click="$router.push('/registrar')"
-      >
-        <span class="mr-2">Criar conta</span>
-      </v-btn>
+        <v-app-bar-nav-icon
+                @click.stop="drawer = !drawer"
+        ></v-app-bar-nav-icon>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -21,12 +13,17 @@
       temporary
       dark
       v-if="showMenu()"
+      width="80%"
+      color="#2D3540"
     >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title>{{ getUser ? getUser.username : 'Sem nome' }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+        <div style="margin-top: 50px">
+            <v-btn text><v-icon @click="drawer = false">mdi-keyboard-backspace</v-icon></v-btn>
+        </div>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>{{ getUser ? getUser.username : 'Sem nome' }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
       <v-divider></v-divider>
 
@@ -55,11 +52,11 @@
             @click="logout"
           >
             <v-list-item-icon>
-              <v-icon>power_settings_new</v-icon>
+              <v-icon>mdi-logout</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
-              <v-list-item-title>Sair</v-list-item-title>
+              <v-list-item-title>Terminar sessão</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -100,7 +97,13 @@
         color: 'light-blue darken-4',
       },
       items: [
-        { title: 'Home', icon: 'dashboard', route: '/admin' },
+          { title: 'A minha conta', icon: 'mdi-account-circle-outline', route: '/home' },
+          { title: 'Line Up', icon: 'mdi-format-list-bulleted-type', route: '/home' },
+          { title: 'Bilhetes', icon: 'mdi-ticket-confirmation-outline', route: '/home' },
+          { title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/home' },
+          { title: 'Como chegar?', icon: 'mdi-map-marker', route: '/home' },
+          { title: 'Termos e política', icon: 'mdi-information-slab-circle-outline', route: '/home' },
+
       ],
     }),
     methods: {
@@ -115,7 +118,7 @@
       logout () {
         sessionStorage.removeItem("usuario")
         sessionStorage.removeItem("token")
-        this.$router.push('/admin/login')
+        this.$router.push('/login')
       }
 
     },

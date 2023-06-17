@@ -16,6 +16,7 @@
           label="Email"
           placeholder="abc@email.com"
           prepend-inner-icon="mdi-email-outline"
+          v-model="user.email"
         ></v-text-field>
         <v-text-field
           outlined
@@ -25,6 +26,7 @@
           :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
           :type="showPass ? 'text' : 'password'"
           @click:append="showPass = !showPass"
+          v-model="user.password"
         ></v-text-field>
         
         <v-row no-gutters>
@@ -44,7 +46,15 @@
           </v-col>
         </v-row>
 
-        <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027">
+        <v-btn
+          class="btn-enviar pa-6 mt-4"
+          block
+          color="#CD2027"
+          @click="onLogin"
+          :loading="isLoading"
+          :disabled="isLoading"
+
+        >
           Enviar
         </v-btn>
       </v-form>
@@ -68,26 +78,29 @@
     data () {
       return {
         switch1: true,
-        showPass: false
+        showPass: false,
+          user: {
+              email: '',
+              password: ''
+          },
+          isLoading: false
       }
     },
     methods: {
-        methods: {
-            ...mapActions('users', ['login']),
-            async onLogin () {
-                this.isLoading = true
-                if (this.user.email && this.user.password) {
-                    let resp = await this.login(this.user)
-                    if (resp.status) {
-                        this.$eventHub.$emit('snackBar', {color: 'success', message: 'Bem vindo'})
-                        this.$router.push('/')
-                    } else {
-                        this.$eventHub.$emit('snackBar', {color: 'error', message: 'Usuário ou senha inválido'})
-                    }
-                }
-                this.isLoading = false
-            }
-        }
+      ...mapActions('users', ['login']),
+      async onLogin () {
+          this.isLoading = true
+          if (this.user.email && this.user.password) {
+              let resp = await this.login(this.user)
+              if (resp.status) {
+                  this.$eventHub.$emit('snackBar', {color: 'success', message: 'Bem vindo'})
+                  this.$router.push('/home')
+              } else {
+                  this.$eventHub.$emit('snackBar', {color: 'error', message: 'Usuário ou senha inválido'})
+              }
+          }
+          this.isLoading = false
+      }
     }
   }
 </script>
