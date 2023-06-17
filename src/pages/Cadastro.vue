@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-row class="mt-2">
       <v-col class="px-8" cols="12" no-gutters>
         <v-icon @click="$router.push('/login')">
@@ -16,12 +16,14 @@
             label="Nome Completo"
             placeholder="Nome Completo"
             prepend-inner-icon="mdi-account-outline"
+            v-model="user.name"
           ></v-text-field>
           <v-text-field
             outlined
             label="Email"
             placeholder="abc@email.com"
             prepend-inner-icon="mdi-email-outline"
+            v-model="user.email"
           ></v-text-field>
           <v-text-field
             outlined
@@ -31,6 +33,7 @@
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPass ? 'text' : 'password'"
             @click:append="showPass = !showPass"
+            v-model="user.password"
           ></v-text-field>
           <v-text-field
             outlined
@@ -42,7 +45,7 @@
             @click:append="showPass = !showPass"
           ></v-text-field>
   
-          <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027">
+          <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027" @click="onRegister" :loading="isLoading" :disabled="isLoading">
             Registrar
           </v-btn>
         </v-form>
@@ -56,19 +59,36 @@
         </span>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
+  import {mapActions} from "vuex";
+
   export default {
     name: 'Cadastro',
     data () {
       return {
-
+          showPass: false,
+          isLoading: false,
+          user: {
+              name: null,
+              email: null,
+              password: null
+          }
       }
     },
     methods: {
-      
+        ...mapActions('users', ['register']),
+      async onRegister () {
+          const r = await this.register(this.user)
+          if (r) {
+              this.$eventHub.$emit('snackBar', {color: 'success', message: 'Usuário registrado com sucesso'})
+              this.$router.push('/login')
+          } else {
+              this.$eventHub.$emit('snackBar', {color: 'error', message: 'Erro ao registrar usuário'})
+          }
+      }
     }
   }
 </script>

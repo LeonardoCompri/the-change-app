@@ -61,6 +61,8 @@
 </template>
 
 <script>
+  import {mapActions} from "vuex";
+
   export default {
     name: 'Login',
     data () {
@@ -70,7 +72,22 @@
       }
     },
     methods: {
-      
+        methods: {
+            ...mapActions('users', ['login']),
+            async onLogin () {
+                this.isLoading = true
+                if (this.user.email && this.user.password) {
+                    let resp = await this.login(this.user)
+                    if (resp.status) {
+                        this.$eventHub.$emit('snackBar', {color: 'success', message: 'Bem vindo'})
+                        this.$router.push('/')
+                    } else {
+                        this.$eventHub.$emit('snackBar', {color: 'error', message: 'Usuário ou senha inválido'})
+                    }
+                }
+                this.isLoading = false
+            }
+        }
     }
   }
 </script>

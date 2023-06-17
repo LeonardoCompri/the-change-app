@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <!-- <v-app-bar app v-show="false">
+    <v-app-bar app v-show="false">
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
         v-if="showMenu()"
@@ -13,9 +13,9 @@
       >
         <span class="mr-2">Criar conta</span>
       </v-btn>
-    </v-app-bar> -->
+    </v-app-bar>
 
-    <!-- <v-navigation-drawer
+    <v-navigation-drawer
       v-model="drawer"
       absolute
       temporary
@@ -63,11 +63,26 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-    </v-navigation-drawer> -->
+    </v-navigation-drawer>
 
     <v-main>
       <router-view></router-view>
     </v-main>
+
+      <v-snackbar :color="snackbar.color" v-model="snackbar.visible" :bottom="'bottom'" :right="'right'"
+                  :timeout="snackbar.timeout">
+          {{ snackbar.message }}
+          <template v-slot:action="{ attrs }">
+              <v-btn
+                      dark
+                      text
+                      v-bind="attrs"
+                      @click="snackbar.visible = false"
+              >
+                  Fechar
+              </v-btn>
+          </template>
+      </v-snackbar>
   </v-app>
 </template>
 
