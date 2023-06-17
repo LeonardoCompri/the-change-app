@@ -23,7 +23,7 @@
   
 <script>
 export default {
-    name: "carrossel",
+    name: "Carrossel",
     data() {
         return {
             step: 0,
