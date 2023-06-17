@@ -1,9 +1,9 @@
 <template>
   <v-container class="box overflow-x-hidden">
-    <v-row class="mt-16" justify="center" no-gutters>
+    <v-row class="mt-4" justify="center" no-gutters>
       <v-col cols="12">
         <video width="100%" height="230" controls>
-          <source src="video_home.mp4" type="video/mp4">
+          <source src="https://thechangearrive.com/video.mp4" type="video/mp4">
           Dispositivo sem suporte a vídeo!
         </video>
       </v-col>
@@ -26,25 +26,25 @@
 
     <v-row class="px-4 mt-12">
       <v-col cols="6">
-        <v-btn class="azeret btn-text" block large color="#CD2027">
+        <v-btn class="azeret btn-text" block large color="#CD2027" @click="$router.push('/donativo')">
           Donativo
         </v-btn>
       </v-col>
 
       <v-col cols="6">
-        <v-btn class="azeret btn-text" block large color="#2F3A4B">
+        <v-btn class="azeret btn-text" block large color="#2F3A4B" @click="$router.push('/bilhetes')">
           Bilhetes
         </v-btn>
       </v-col>
     </v-row>
 
     <v-row class="px-4 mt-8">
-      <v-col cols="9">
+      <v-col cols="8">
         <span class="azeret section-title">
           Line Up
         </span>
       </v-col>
-      <v-col class="mt-n1" cols="3">
+      <v-col class="mt-n1" cols="4">
         <span class="azeret section-link" @click="$router.push('/lineup')">
           Ver todos
         </span>      
@@ -56,14 +56,14 @@
         class="pa-4"
       >
         <v-slide-item 
-          v-for="img in images_lineup"
-          :key="img.key"
+          v-for="(line,index) in lineup"
+          :key="index"
           class="mx-1"
         >
           <v-img
             max-height="215"
             max-width="161"
-            :src="img.src"
+            :src="line.src"
           ></v-img>
         </v-slide-item>
       </v-slide-group>
@@ -75,7 +75,7 @@
           Acreditamos que chegou um momento de mudança
         </p>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="7">
             <p class="inter text-1">
               para o mundo!
             </p>
@@ -92,7 +92,7 @@
     </v-row>
 
     <v-row class="mt-0" style="background: #2D3540;">
-      <v-col class="d-flex justify-end">
+      <v-col class="d-flex justify-end pa-0 pb-6">
         <v-img
         max-width="350"
         src="../assets/Lable.png"
@@ -101,14 +101,14 @@
     </v-row>
 
     <v-row class="mt-0">
-      <v-col>
+      <v-col class="pa-0" cols="12">
         <v-img
         src="../assets/a_mudanca.png"
         ></v-img>
       </v-col>
     </v-row>
 
-    <v-row class="mt-0" style="width: 600px; background-color: #040406;">
+    <v-row style="width: 600px; background-color: #040406;">
       <v-col class="at-container">
         <span class="inter text-2 at-item">
           // Contamos contigo!
@@ -117,12 +117,12 @@
     </v-row>
 
     <v-row class="px-4 mt-8">
-      <v-col cols="9">
+      <v-col cols="8">
         <span class="azeret section-title">
           Videos
         </span>
       </v-col>
-      <v-col class="mt-n1" cols="3">
+      <v-col class="mt-n1" cols="4">
         <span class="azeret section-link" @click="$router.push('/videos')">
           Ver todos
         </span>      
@@ -134,18 +134,94 @@
         class="pa-4"
       >
         <v-slide-item 
-          v-for="img in images_lineup"
-          :key="img.key"
+          v-for="(video, index) in videos"
+          :key="index"
           class="mx-1"
           width="270"
           height="185"
         >
           <video width="270" height="185" controls>
-            <source src="video_home.mp4" type="video/mp4">
+            <source :src="video.src" type="video/mp4">
             Dispositivo sem suporte a vídeo!
           </video>
         </v-slide-item>
       </v-slide-group>
+    </v-row>
+
+    <v-row class="mb-2">
+      <v-col class="d-flex justify-center" cols="12">
+        <v-img
+        max-height="176"
+        max-width="321"
+        src="../assets/como_chegar.png"
+        @click="$router.push('/como-chegar')"
+        ></v-img>
+      </v-col>
+    </v-row>
+
+    <v-row style="background-color: #fff;">
+      <v-col class="mt-4" cols="12">
+        <p class="inter text-3">
+          Evento <br> The CHANGE
+        </p>
+
+        <v-img
+        max-height="52"
+        max-width="52"
+        src="../assets/ok.gif"
+        ></v-img>
+
+        <p class="azeret text-4 mt-4">
+          Este evento é organizado pela Associação Rodrigues Pereira, Vitae Fest, Charis e outros que estão a juntar-se a este movimento de evangelização em nome de Jesus e unidade da igreja.
+        </p>
+        
+        <p class="azeret text-5 mt-8">
+          Organização
+        </p>
+
+        <v-row>
+          <v-col cols="2">
+            <v-img
+            src="../assets/organizacao_1.png"
+            ></v-img>
+          </v-col>
+          <v-col class="d-flex justify-center align-center ml-2" cols="5">
+            <v-img
+            src="../assets/organizacao_2.png"
+            ></v-img>
+          </v-col>
+        </v-row>
+
+        <p class="azeret text-5 mt-8">
+          Igrejas Organizadoras
+        </p>
+
+        <v-slide-group v-model="slideGroup">
+          <v-slide-item v-for="(igreja, index) in igrejas" :key="index">
+              <v-img
+              contain
+              max-height="62"
+              :src="igreja.src"
+              class="mx-2"
+              ></v-img>
+          </v-slide-item>
+        </v-slide-group>
+
+        <p class="azeret text-5 mt-8">
+          Apoios
+        </p>
+
+        <v-slide-group v-model="slideGroup">
+          <v-slide-item v-for="(igreja, index) in igrejas" :key="index">
+              <v-img
+              contain
+              max-height="62"
+              :src="igreja.src"
+              class="mx-2"
+              ></v-img>
+          </v-slide-item>
+        </v-slide-group>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -155,33 +231,50 @@
     name: 'Home',
     data () {
       return {
-        images_lineup: [
-          {
-            key: 1,
-            src: require("../assets/img_1.png")
-          },
-          {
-            key: 2,
-            src: require("../assets/img_1.png")
-          },
-          {
-            key: 3,
-            src: require("../assets/img_1.png")
-          },
-          {
-            key: 4,
-            src: require("../assets/img_1.png")
-          }
+        slideGroup: 0,
+        lineup: [
+          {src: require("../assets/img_1.png")},
+          {src: require("../assets/img_1.png")},
+          {src: require("../assets/img_1.png")},
+          {src: require("../assets/img_1.png")}
+        ],
+        videos: [
+          {src: "https://thechangearrive.com/video.mp4"},
+          {src: "https://thechangearrive.com/video.mp4"},
+          {src: "https://thechangearrive.com/video.mp4"},
+          {src: "https://thechangearrive.com/video.mp4"},
+          {src: "https://thechangearrive.com/video.mp4"},
+        ],
+        igrejas: [
+          {src: require("../assets/igrejas/igreja_1.png")},
+          {src: require("../assets/igrejas/igreja_2.png")},
+          {src: require("../assets/igrejas/igreja_3.png")},
+          {src: require("../assets/igrejas/igreja_1.png")},
+          {src: require("../assets/igrejas/igreja_2.png")},
+          {src: require("../assets/igrejas/igreja_3.png")},
+          {src: require("../assets/igrejas/igreja_1.png")},
+          {src: require("../assets/igrejas/igreja_2.png")},
+          {src: require("../assets/igrejas/igreja_3.png")},
         ]
       }
     },
-    methods: {
-      
+    created() {
+      this.interval = setInterval(() => {
+        if(this.slideGroup == this.igrejas.length){
+          this.slideGroup = -1;
+        }
+
+        this.slideGroup++;
+      }, 700)
     }
   }
 </script>
 
 <style scoped>
+  video{
+    border-radius: 15px;
+    border-bottom: 2px solid red;
+  }
   .box{
     height: 100%;
     background-color: #060518;
@@ -268,5 +361,31 @@
 			transform:translateX(-600px);
 		}
 	}
+
+  .text-3{
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 48px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #141414;
+  }
+
+  .text-4{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    font-feature-settings: 'case' on;
+    color: #1C2026;
+  }
+
+  .text-5{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    color: #141414;
+  }
 
 </style>
