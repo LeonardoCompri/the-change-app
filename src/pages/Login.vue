@@ -38,7 +38,7 @@
             ></v-switch>
           </v-col>
           <v-col class="mt-n1" cols="5">
-            <v-btn text class="btn-forgot">
+            <v-btn text class="btn-forgot" @click="$router.push('/alterar-palavra-passe')">
               Forgot password?
             </v-btn>
           </v-col>

@@ -9,29 +9,23 @@
     </v-row>
     <v-row class="mt-6 px-5" justify="center" no-gutters>
       <v-col cols="12">
-        <p class="title-page">Verificação</p>
+        <p class="title-page">Alterar Palavra Passe</p>
         <span class="text-sub">
-          Enviamos o código de verificação para {{tel}}
+          Digite seu endereço de e-mail para solicitar uma redefinição de senha
         </span>
 
         <v-form class="mt-4">
-          <v-otp-input
-            length="4"
-            type="number"
-          ></v-otp-input>
+          <v-text-field
+            outlined
+            label="Email"
+            placeholder="abc@email.com"
+            prepend-inner-icon="mdi-email-outline"
+          ></v-text-field>
   
-          <v-btn class="btn-enviar pa-6 mt-8" block color="#CD2027">
-            Continuar
+          <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027">
+            Enviar
           </v-btn>
         </v-form>
-      </v-col>
-      <v-col class="mt-6 d-flex justify-center" cols="12" no-gutters>
-        <span class="text-registrar">
-          Reenviar código em
-          <v-btn text class="px-0 btn-clock">
-            0:20
-          </v-btn>
-        </span>
       </v-col>
     </v-row>
   </div>
@@ -39,10 +33,10 @@
 
 <script>
   export default {
-    name: 'Verificacao',
+    name: 'AlterarPalavraPasse',
     data () {
       return {
-        tel: '+351 987 654 321'
+        
       }
     },
     methods: {
@@ -82,14 +76,4 @@
     color: #fff;
     border-radius: 4px;
   }
-  .btn-clock{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 25px;
-    color: #5669FF;
-    text-transform: none;
-  }
-
 </style>

@@ -7,6 +7,7 @@ import Inicio from "../pages/Inicio"
 import Login from "../pages/Login.vue"
 import Cadastro from "../pages/Cadastro.vue"
 import Verificacao from "../pages/Verificacao.vue"
+import AlterarPalavraPasse from "../pages/AlterarPalavraPasse.vue"
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,11 @@ export default new VueRouter({
       path: '/verificacao',
       name: 'verificacao',
       component: Verificacao
+    },
+    {
+      path: '/alterar-palavra-passe',
+      name: 'alterar-palavra-passe',
+      component: AlterarPalavraPasse
     }
   ]
 })
