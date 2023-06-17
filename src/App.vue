@@ -1,9 +1,16 @@
 <template>
   <v-app>
-    <v-app-bar app v-if="showMenu()">
+    <v-app-bar app v-if="showMenu()" class="bgmenu">
+        <v-avatar
+            color="white"
+            size="40"
+        >
+            <span class="white--text text-h5">36</span>
+        </v-avatar>
       <v-spacer></v-spacer>
         <v-app-bar-nav-icon
-                @click.stop="drawer = !drawer"
+          dark
+          @click.stop="drawer = !drawer"
         ></v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -19,6 +26,14 @@
         <div style="margin-top: 50px">
             <v-btn text><v-icon @click="drawer = false">mdi-keyboard-backspace</v-icon></v-btn>
         </div>
+
+        <v-avatar
+                color="white"
+                size="40"
+                class="ml-4 mt-4"
+        >
+            <span class="white--text text-h5">36</span>
+        </v-avatar>
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title>{{ getUser ? getUser.username : 'Sem nome' }}</v-list-item-title>
@@ -60,21 +75,30 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+
+
+        <div style="flex: 1; display: flex">
+            <div style="display: flex;justify-content: space-between;width: 100%;">
+                <a target="_blank" href="https://instagram.com/thechangelisbon?igshid=MjEwN2IyYWYwYw=="><img src="/icons/instagram-colored.svg" width="38px"></a>
+                <a target="_blank" href="http://www.tiktok.com/@thechangelisbon"><img src="/icons/tiktok-colored.svg" width="38px"></a>
+                <a target="_blank" href="https://www.facebook.com/thechangelisbon/"><img src="/icons/facebook-colored.svg" width="38px"></a>
+                <a target="_blank" href="whatsapp://send?text='Venha Fazer parte da Mudança, https://thechangearrive.com'"><img src="/icons/whatsapp-colored.svg" width="38px"></a>
+            </div>
+        </div>
     </v-navigation-drawer>
 
     <v-main>
       <router-view></router-view>
     </v-main>
 
-      <v-snackbar :color="snackbar.color" v-model="snackbar.visible" :bottom="'bottom'" :right="'right'"
-                  :timeout="snackbar.timeout">
+      <v-snackbar :color="snackbar.color" v-model="snackbar.visible" :bottom="'bottom'" :right="'right'" :timeout="snackbar.timeout">
           {{ snackbar.message }}
           <template v-slot:action="{ attrs }">
               <v-btn
-                      dark
-                      text
-                      v-bind="attrs"
-                      @click="snackbar.visible = false"
+                  dark
+                  text
+                  v-bind="attrs"
+                  @click="snackbar.visible = false"
               >
                   Fechar
               </v-btn>
@@ -180,5 +204,10 @@
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
     opacity: 0;
+  }
+
+
+  .bgmenu{
+      background-color: #060518 !important;
   }
 </style>
