@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Admin from './admin/index'
 import Inicio from "../pages/Inicio"
 import Login from "../pages/Login.vue"
+import Cadastro from "../pages/Cadastro.vue"
 
 Vue.use(VueRouter)
 
@@ -17,9 +18,14 @@ export default new VueRouter({
       component: Inicio
     },
     {
-      path: '/teste',
+      path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/cadastro',
+      name: 'cadastro',
+      component: Cadastro
     }
   ]
 })

@@ -34,6 +34,7 @@
               inset
               label="Remember Me"
               class="mt-0"
+              style=""
             ></v-switch>
           </v-col>
           <v-col class="mt-n1" cols="5">
@@ -43,24 +44,25 @@
           </v-col>
         </v-row>
 
-        <v-btn class="btn-enviar pa-6" block color="#CD2027">
+        <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027">
           Enviar
         </v-btn>
       </v-form>
     </v-col>
-    <v-col class="mt-6" cols="12">
-      <p>
+    <v-col class="mt-6 d-flex justify-center" cols="12" no-gutters>
+      <span class="text-registrar">
         Não tenho conta?
-        <v-btn text>
-          Registrar-se
+        <v-btn text class="mt-n1 px-0 btn-registrar" @click="$router.push('/cadastro')">
+          Registrar
         </v-btn>
-      </p>
+      </span>
     </v-col>
   </v-row>
 </template>
 
 <script>
   export default {
+    name: 'Login',
     data () {
       return {
         switch1: true,
@@ -103,6 +105,23 @@
     letter-spacing: 0px;
     color: #fff;
     border-radius: 4px;
+  }
+
+  .text-registar{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 25px;
+  }
+  .btn-registrar{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 25px;
+    color: #5669FF;
+    text-transform: none;
   }
 
 </style>
