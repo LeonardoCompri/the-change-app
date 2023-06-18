@@ -140,7 +140,7 @@
           width="270"
           height="185"
         >
-          <video width="270" height="185" controls>
+          <video width="270" height="185" controls class="video-slide">
             <source :src="video.src" type="video/mp4">
             Dispositivo sem suporte a vídeo!
           </video>
@@ -271,7 +271,7 @@
 </script>
 
 <style scoped>
-  video{
+  .video-slide{
     border-radius: 15px;
     border-bottom: 2px solid red;
   }

@@ -12,6 +12,7 @@ import Verificacao from "../pages/Verificacao.vue"
 import AlterarPalavraPasse from "../pages/AlterarPalavraPasse.vue"
 
 import Home from "../pages/Home.vue"
+import Donativo from "../pages/Donativo.vue"
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ export default new VueRouter({
       path: '/home',
       name: 'home',
       component: Home
-    }
+    },
+    {
+      path: '/donativo',
+      name: 'donativo',
+      component: Donativo
+    },
   ]
 })
