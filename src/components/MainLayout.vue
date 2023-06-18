@@ -113,7 +113,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
     data: () => ({
-        hiddenInRoutes: ['login', 'inicio'],
+        hiddenInRoutes: ['login', 'inicio', 'donativo', 'como-chegar'],
         drawer: false,
         snackbar: {
             visible: false,
@@ -123,11 +123,11 @@ export default {
         },
         items: [
             { title: 'A minha conta', icon: 'mdi-account-circle-outline', route: '/home' },
-            { title: 'Line Up', icon: 'mdi-format-list-bulleted-type', route: '/home' },
-            { title: 'Bilhetes', icon: 'mdi-ticket-confirmation-outline', route: '/home' },
-            { title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/home' },
-            { title: 'Como chegar?', icon: 'mdi-map-marker', route: '/home' },
-            { title: 'Termos e política', icon: 'mdi-information-slab-circle-outline', route: '/home' },
+            { title: 'Line Up', icon: 'mdi-format-list-bulleted-type', route: '/lineup' },
+            { title: 'Bilhetes', icon: 'mdi-ticket-confirmation-outline', route: '/bilhetes' },
+            { title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/donativo' },
+            { title: 'Como chegar?', icon: 'mdi-map-marker', route: '/como-chegar' },
+            { title: 'Termos e política', icon: 'mdi-information-slab-circle-outline', route: '/termos' },
 
         ],
     }),

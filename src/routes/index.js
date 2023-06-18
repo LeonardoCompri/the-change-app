@@ -13,6 +13,7 @@ import AlterarPalavraPasse from "../pages/AlterarPalavraPasse.vue"
 
 import Home from "../pages/Home.vue"
 import Donativo from "../pages/Donativo.vue"
+import ComoChegar from "../pages/ComoChegar.vue"
 
 Vue.use(VueRouter)
 
@@ -63,6 +64,11 @@ export default new VueRouter({
       path: '/donativo',
       name: 'donativo',
       component: Donativo
+    },
+    {
+      path: '/como-chegar',
+      name: 'como-chegar',
+      component: ComoChegar
     },
   ]
 })

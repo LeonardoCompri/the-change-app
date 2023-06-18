@@ -1,6 +1,17 @@
 <template>
-  <v-container class="box overflow-x-hidden">
-    <v-row class="box-inicio px-6">
+  <v-container class="box overflow-x-hidden pt-0">
+    <v-row class="mt-1 py-1" style="position: absolute;">
+      <v-col class="px-8" cols="3" no-gutters>
+        <v-icon @click="$router.push('/home')" color="#fff">
+          mdi-arrow-left
+        </v-icon>
+      </v-col>
+      <v-col>
+        <span class="inter text">Donativo</span>
+      </v-col>
+    </v-row>
+
+    <v-row class="box-inicio px-6 mt-0">
       <v-col class="d-flex flex-column justify-end aling-center" cols="12">
         <p class="azeret page-title mb-1">
           Juntos somos a Mudança.
@@ -92,6 +103,13 @@
   .inter{
     font-family: 'Inter';
     font-style: normal;
+  }
+
+  .text{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
   }
   .page-title{
     font-weight: 600;
