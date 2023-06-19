@@ -132,7 +132,7 @@
 
 <style scoped>
   .box{
-    min-height: calc(100vh + 100px);
+    padding-bottom: 100px;
     background-color: #060518;
   }
 

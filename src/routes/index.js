@@ -37,8 +37,8 @@ export default new VueRouter({
     },
     {
       path: '/',
-      name: 'inicio',
-      component: Login
+      name: 'introducao',
+      component: Introducao
     },
     {
       path: '/login',

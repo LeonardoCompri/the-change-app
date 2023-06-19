@@ -32,7 +32,7 @@
       </v-col>
 
       <v-col cols="6">
-        <v-btn class="azeret btn-text" block large color="#2F3A4B" @click="$router.push('/bilhetes')">
+        <v-btn class="azeret btn-text" block large color="#2F3A4B">
           Bilhetes
         </v-btn>
       </v-col>
