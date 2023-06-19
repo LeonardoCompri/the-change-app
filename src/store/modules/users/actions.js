@@ -21,7 +21,7 @@ export default {
             let {data} = await api.post("users/register", user)
             return data
         } catch (e) {
-            return {status: false}
+            return false
         }
     },
 

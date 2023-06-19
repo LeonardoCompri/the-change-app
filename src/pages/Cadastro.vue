@@ -43,6 +43,7 @@
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPass ? 'text' : 'password'"
             @click:append="showPass = !showPass"
+            v-model="user.repassword"
           ></v-text-field>
   
           <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027" @click="onRegister" :loading="isLoading" :disabled="isLoading">
@@ -74,13 +75,24 @@
           user: {
               name: null,
               email: null,
-              password: null
+              password: null,
+              repassword: null
           }
       }
     },
     methods: {
         ...mapActions('users', ['register']),
       async onRegister () {
+            if (!this.user.name || !this.user.email || !this.user.password || !this.user.repassword) {
+                this.$eventHub.$emit('snackBar', {color: 'error', message: 'Preencha todos os campos'})
+                return
+            }
+
+          if (this.user.password != this.user.repassword) {
+              this.$eventHub.$emit('snackBar', {color: 'error', message: 'Senhas não conferem'})
+              return
+          }
+
           const r = await this.register(this.user)
           if (r) {
               this.$eventHub.$emit('snackBar', {color: 'success', message: 'Usuário registrado com sucesso'})

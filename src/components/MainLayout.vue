@@ -147,9 +147,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
     data: () => ({
-        hiddenInRoutes: ['login', 'inicio', 'carrossel'],
+        hiddenInRoutes: ['login', 'inicio', 'carrossel', 'cadastro', 'alterar-palavra-passe'],
         showTitleDegrade: ['donativo', 'lineup', 'Lineup', 'como-chegar', 'Galeria', 'galeria'],
-        hideFooterInRoutes: ['galeria', 'introducao', 'carrossel', 'login'],
+        hideFooterInRoutes: ['galeria', 'introducao', 'carrossel', 'login', 'cadastro', 'alterar-palavra-passe'],
         drawer: false,
         snackbar: {
             visible: false,
@@ -193,8 +193,8 @@ export default {
         },
 
         logout () {
-            sessionStorage.removeItem("usuario")
-            sessionStorage.removeItem("token")
+            localStorage.removeItem("usuario")
+            localStorage.removeItem("token")
             this.$router.push('/login')
         },
 

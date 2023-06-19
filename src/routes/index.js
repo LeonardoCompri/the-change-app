@@ -20,86 +20,108 @@ import Lineups from "../pages/Lineups.vue";
 import Galeria from "../pages/Galeria.vue";
 import ShowGaleria from "../pages/ShowGaleria.vue";
 
+import VerifyToken from "../helpers/VerifyToken";
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  routes: [
-    ...Admin,
-    {
-      path: '/introducao',
-      name: 'introducao',
-      component: Introducao
-    },
-    {
-      path: '/carrossel',
-      name: 'carrossel',
-      component: Carrossel
-    },
-    {
-      path: '/',
-      name: 'introducao',
-      component: Introducao
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/cadastro',
-      name: 'cadastro',
-      component: Cadastro
-    },
-    {
-      path: '/verificacao',
-      name: 'verificacao',
-      component: Verificacao
-    },
-    {
-      path: '/alterar-palavra-passe',
-      name: 'alterar-palavra-passe',
-      component: AlterarPalavraPasse
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/donativo',
-      name: 'donativo',
-      component: Donativo
-    },
-    {
-      path: '/lineup/:id',
-      name: 'lineup',
-      component: ShowLineup
-    },
-      {
-          path: '/lineup',
-          name: 'Lineup',
-          component: Lineups
-      },
+    routes: [
+        ...Admin,
+        {
+            path: '/introducao',
+            name: 'introducao',
+            component: Introducao,
+            beforeEnter: (to, from, next) => {
+                if (localStorage.getItem('lang')) {
+                    next('/login')
+                }
+                next()
+            }
+        },
+        {
+            path: '/carrossel',
+            name: 'carrossel',
+            component: Carrossel
+        },
+        {
+            path: '/',
+            name: 'introducao',
+            component: Introducao,
+            beforeEnter: (to, from, next) => {
+                if (localStorage.getItem('lang')) {
+                    next('/login')
+                }
+                next()
+            }
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
+        },
+        {
+            path: '/cadastro',
+            name: 'cadastro',
+            component: Cadastro
+        },
+        {
+            path: '/verificacao',
+            name: 'verificacao',
+            component: Verificacao
+        },
+        {
+            path: '/alterar-palavra-passe',
+            name: 'alterar-palavra-passe',
+            component: AlterarPalavraPasse
+        },
+        {
+            path: '/home',
+            name: 'home',
+            component: Home,
+            beforeEnter: VerifyToken
+        },
+        {
+            path: '/donativo',
+            name: 'donativo',
+            component: Donativo,
+            beforeEnter: VerifyToken
+        },
+        {
+            path: '/lineup/:id',
+            name: 'lineup',
+            component: ShowLineup,
+            beforeEnter: VerifyToken
+        },
+        {
+            path: '/lineup',
+            name: 'Lineup',
+            component: Lineups,
+            beforeEnter: VerifyToken
+        },
 
-      {
-          path: '/galeria',
-          name: 'Galeria',
-          component: Galeria
-      },
-      {
-          path: '/galeria/:id',
-          name: 'galeria',
-          component: ShowGaleria
-      },
-    {
-      path: '/como-chegar',
-      name: 'como-chegar',
-      component: ComoChegar
-    },
-      {
-          path: '/profile',
-          name: 'profile',
-          component: Conta
-      },
-  ]
+        {
+            path: '/galeria',
+            name: 'Galeria',
+            component: Galeria,
+            beforeEnter: VerifyToken
+        },
+        {
+            path: '/galeria/:id',
+            name: 'galeria',
+            component: ShowGaleria,
+            beforeEnter: VerifyToken
+        },
+        {
+            path: '/como-chegar',
+            name: 'como-chegar',
+            component: ComoChegar,
+            beforeEnter: VerifyToken
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Conta,
+            beforeEnter: VerifyToken
+        },
+    ]
 })

@@ -11,12 +11,16 @@ import IndexLineUp from "../../pages/admin/lineup/Index.vue";
 import IndexVideo from "../../pages/admin/video/Index.vue";
 
 export default [
-  {
-    path: '/admin/home',
-    component: Index,
-    name: 'Início admin',
-    beforeEnter: VerifyTokenAdmin
-  },
+    {
+        path: '/admin',
+        redirect: '/admin/home'
+    },
+    {
+        path: '/admin/home',
+        component: Index,
+        name: 'Início admin',
+        beforeEnter: VerifyTokenAdmin
+    },
 
     {
         path: '/admin/login',
