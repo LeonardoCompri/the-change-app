@@ -8,6 +8,8 @@ import IndexUsers from "../../pages/admin/users/Index.vue";
 
 import IndexLineUp from "../../pages/admin/lineup/Index.vue";
 
+import IndexVideo from "../../pages/admin/video/Index.vue";
+
 export default [
   {
     path: '/admin/home',
@@ -33,6 +35,13 @@ export default [
         path: '/admin/lineup',
         component: IndexLineUp,
         name: 'Lineup admin',
+        beforeEnter: VerifyTokenAdmin
+    },
+
+    {
+        path: '/admin/video',
+        component: IndexVideo,
+        name: 'Video admin',
         beforeEnter: VerifyTokenAdmin
     }
 ]

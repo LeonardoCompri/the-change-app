@@ -44,7 +44,7 @@
           Line Up
         </span>
       </v-col>
-      <v-col class="mt-n1" cols="4">
+      <v-col class="mt-n1 text-right" cols="4">
         <span class="azeret section-link" @click="$router.push('/lineup')">
           Ver todos
         </span>      
@@ -124,8 +124,8 @@
           Videos
         </span>
       </v-col>
-      <v-col class="mt-n1" cols="4">
-        <span class="azeret section-link" @click="$router.push('/videos')">
+      <v-col class="mt-n1 text-right" cols="4">
+        <span class="azeret section-link" @click="$router.push('/galeria')">
           Ver todos
         </span>      
       </v-col>
@@ -142,10 +142,17 @@
           width="270"
           height="185"
         >
-          <video width="270" height="185" controls class="video-slide">
-            <source :src="video.src" type="video/mp4">
-            Dispositivo sem suporte a vídeo!
-          </video>
+
+            <v-card @click="$router.push('/galeria/' + video.id)" class="card-video" :style="`background-image: url('${getApi}/images-video/${video.image}; background-size: cover`">
+                <div class="contentCard">
+                    <div class="descricao">
+                        <p class="title mb-1">{{ video.name }}</p>
+                        <p class="category mb-0">Vídeo</p>
+                    </div>
+                    <img src="/icons/play.svg" class="play">
+                </div>
+            </v-card>
+
         </v-slide-item>
       </v-slide-group>
     </v-row>
@@ -237,13 +244,7 @@
       return {
         slideGroup: 0,
         lineup: [],
-        videos: [
-          {src: "https://thechangearrive.com/video.mp4"},
-          {src: "https://thechangearrive.com/video.mp4"},
-          {src: "https://thechangearrive.com/video.mp4"},
-          {src: "https://thechangearrive.com/video.mp4"},
-          {src: "https://thechangearrive.com/video.mp4"},
-        ],
+        videos: [],
         igrejas: [
           {src: require("../assets/igrejas/igreja_1.png")},
           {src: require("../assets/igrejas/igreja_2.png")},
@@ -257,11 +258,13 @@
         ],
 
           isLoadingLineup: true,
+          isLoadingVideos: true,
           getApi: process.env.VUE_APP_API
       }
     },
     methods: {
         ...mapActions('lineup', ['lisLineup']),
+        ...mapActions('videos', ['listVideos']),
       async loadLineups () {
         this.isLoadingLineup = true
 
@@ -273,7 +276,20 @@
 
 
         this.isLoadingLineup = false
-      }
+      },
+
+        async loadVideos () {
+            this.isLoadingVideos = true
+
+            const videos = await this.listVideos()
+
+            if (videos && videos.data) {
+                this.videos = videos.data
+            }
+
+
+            this.isLoadingVideos = false
+        }
     },
     mounted() {
       this.interval = setInterval(() => {
@@ -285,11 +301,58 @@
       }, 700)
 
         this.loadLineups()
+        this.loadVideos()
     }
   }
 </script>
 
 <style scoped>
+.card-video {
+    width: 270px;
+    height: 185px;
+    border-bottom: 4px solid #CD2027;
+    border-radius: 8px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.coverVideo {
+    width: 270px;
+    height: 185px;
+    position: relative;
+}
+.contentCard {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: linear-gradient(180deg, rgba(6, 5, 24, 0) 0%, #060518 100%);
+}
+
+
+.contentCard .descricao {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: #FFF;
+}
+
+.descricao .title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #F9FAFC;
+}
+
+.contentCard .play {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+}
+
   .video-slide{
     border-radius: 15px;
     border-bottom: 2px solid red;

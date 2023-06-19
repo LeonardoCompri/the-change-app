@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col md="12" cols="12" class="d-flex justify-space-between">
-                <h2>Lineup</h2>
+                <h2>Vídeos</h2>
                 <v-btn color="primary" @click="dialogAdd = true">Adicionar</v-btn>
             </v-col>
 
@@ -10,7 +10,7 @@
                 <v-card class="bg-transparent-opacity">
                     <v-data-table
                             :headers="headers"
-                            :items="lineups"
+                            :items="videos"
                             :items-per-page="10"
                             class="elevation-0 bg-transparent"
                             hide-default-footer
@@ -19,11 +19,11 @@
                           'itemsPerPageText': 'Itens por página',
                         }"
 
-                            :server-items-length="totallineups"
+                            :server-items-length="totalvideos"
 
                             :loading="isLoading"
-                            :options.sync="optionsDatalineups"
-                            no-data-text="Nenhum linup cadastrado"
+                            :options.sync="optionsDatavideos"
+                            no-data-text="Nenhum vídeo cadastrado"
                     >
                     </v-data-table>
                 </v-card>
@@ -50,13 +50,13 @@
         >
             <v-card>
                 <v-card-title class="text-h5">
-                    Adicionar lineup
+                    Adicionar video
                 </v-card-title>
                 <v-card-text>
                     <v-row class="mt-5">
                         <v-col cols="12" md="12">
                             <v-text-field
-                                v-model="lineup.name"
+                                v-model="video.name"
                                 placeholder="Nome do artista"
                                 label="Nome"
                                 outlined
@@ -66,27 +66,7 @@
 
                         <v-col cols="12" md="12">
                             <v-text-field
-                                    v-model="lineup.category"
-                                    placeholder="Categoria"
-                                    label="Categoria"
-                                    outlined
-                            >
-                            </v-text-field>
-                        </v-col>
-
-                        <v-col cols="12" md="12">
-                            <v-datetime-picker
-                                    v-model="lineup.date"
-                                    :text-field-props="textFieldProps"
-                                    label="Data"
-                                    dateFormat="yyyy-MM-dd"
-                            ></v-datetime-picker>
-                        </v-col>
-
-
-                        <v-col cols="12" md="12">
-                            <v-text-field
-                                    v-model="lineup.video"
+                                    v-model="video.url"
                                     placeholder="Link do video"
                                     label="Video"
                                     outlined
@@ -94,26 +74,14 @@
                             </v-text-field>
                         </v-col>
 
-
                         <v-col cols="12" md="12">
                             <v-file-input
-                                  v-model="lineup.image"
-                                  placeholder="Imagem do artista"
-                                  label="Imagem"
-                                  outlined
-                            >
-                            </v-file-input>
-                        </v-col>
-
-
-                        <v-col cols="12" md="12">
-                            <v-textarea
-                                    v-model="lineup.bio"
-                                    placeholder="Bio"
-                                    label="Bio"
+                                    v-model="video.image"
+                                    placeholder="Imagem do vídeo"
+                                    label="Imagem"
                                     outlined
                             >
-                            </v-textarea>
+                            </v-file-input>
                         </v-col>
 
                     </v-row>
@@ -154,11 +122,11 @@ export default {
     data() {
         return {
             page: 1,
-            totallineups: null,
+            totalvideos: null,
             isLoading: true,
             isLoadingStore: false,
             last_page: 1,
-            lineups: [],
+            videos: [],
             headers: [
                 {
                     text: 'Nome',
@@ -174,17 +142,14 @@ export default {
                 },
             ],
             dialogAdd: false,
-            optionsDatalineups: {
+            optionsDatavideos: {
                 itemsPerPage: 10
             },
 
-            lineup: {
+            video: {
                 name: null,
-                category: null,
-                bio: null,
-                date: null,
-                image: null,
-                video: null
+                url: null,
+                image: null
             },
 
             textFieldProps: {
@@ -195,7 +160,7 @@ export default {
     },
 
     methods: {
-        ...mapActions('lineup', ['lisLineup', 'storeLineup']),
+        ...mapActions('videos', ['listVideos', 'storeVideo']),
         async onLoad(page = 1, itemsPerPage = 10) {
             this.page = page
             this.isLoading = true
@@ -203,39 +168,37 @@ export default {
                 page: page,
                 itemsPerPage
             }
-            const lineups = await this.lisLineup(filters)
-            this.lineups = lineups.data
-            this.last_page = lineups.last_page
-            this.totallineups = lineups.total
+            const videos = await this.listVideos(filters)
+            this.videos = videos.data
+            this.last_page = videos.last_page
+            this.totalvideos = videos.total
             this.isLoading = false
         },
 
         async onSend () {
             const form = new FormData();
             this.isLoadingStore = true
-            if (this.lineup) {
-                const lineup = JSON.parse(JSON.stringify(this.lineup))
-                lineup.date = dayjs(lineup.date).format('YYYY-MM-DD HH:mm:ss')
-                lineup.image = this.lineup.image
-                for (let property in lineup) {
-                    form.append(property, lineup[property])
+            if (this.video) {
+                const video = JSON.parse(JSON.stringify(this.video))
+                const form = new FormData();
+                video.image = this.video.image
+                for (let property in video) {
+                    form.append(property, video[property])
                 }
 
-                const r = await this.storeLineup(form)
+
+                const r = await this.storeVideo(form)
                 if (r) {
-                    this.$eventHub.$emit('snackBar', {color: 'success', message: 'Lineup cadastrado com sucesso'})
-                    this.lineup= {
+                    this.$eventHub.$emit('snackBar', {color: 'success', message: 'Video cadastrado com sucesso'})
+                    this.video= {
                         name: null,
-                        category: null,
-                        bio: null,
-                        date: null,
-                        image: null,
-                        video: null
+                        url: null,
+                        image: null
                     }
                     this.dialogAdd = false
                     this.onLoad()
                 } else {
-                    this.$eventHub.$emit('snackBar', {color: 'error', message: 'Erro ao cadastrar lineup'})
+                    this.$eventHub.$emit('snackBar', {color: 'error', message: 'Erro ao cadastrar vídeo'})
                 }
             }
 
@@ -248,13 +211,13 @@ export default {
     },
 
     computed: {
-        ...mapGetters('lineups', ['getUser']),
+        ...mapGetters('videos', ['getUser']),
     },
 
     watch: {
-        optionsDatalineups: {
+        optionsDatavideos: {
             handler () {
-                this.onLoad(this.optionsDatalineups.page, this.optionsDatalineups.itemsPerPage)
+                this.onLoad(this.optionsDatavideos.page, this.optionsDatavideos.itemsPerPage)
             },
             deep: true,
         },

@@ -17,6 +17,8 @@ import ComoChegar from "../pages/ComoChegar.vue"
 import Conta from "../pages/Conta.vue";
 import ShowLineup from "../pages/ShowLineup.vue";
 import Lineups from "../pages/Lineups.vue";
+import Galeria from "../pages/Galeria.vue";
+import ShowGaleria from "../pages/ShowGaleria.vue";
 
 Vue.use(VueRouter)
 
@@ -77,6 +79,17 @@ export default new VueRouter({
           path: '/lineup',
           name: 'Lineup',
           component: Lineups
+      },
+
+      {
+          path: '/galeria',
+          name: 'Galeria',
+          component: Galeria
+      },
+      {
+          path: '/galeria/:id',
+          name: 'galeria',
+          component: ShowGaleria
       },
     {
       path: '/como-chegar',

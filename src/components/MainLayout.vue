@@ -107,7 +107,7 @@
 
         <v-main>
             <router-view></router-view>
-            <v-bottom-navigation fixed class="bottomNav">
+            <v-bottom-navigation fixed class="bottomNav" v-if="showFooter()">
                 <v-btn @click="$router.push('/home')">
                     <v-icon>mdi-home</v-icon>
                 </v-btn>
@@ -144,7 +144,8 @@ export default {
     name: 'App',
     data: () => ({
         hiddenInRoutes: ['login', 'inicio'],
-        showTitleDegrade: ['donativo', 'lineup', 'Lineup', 'como-chegar'],
+        showTitleDegrade: ['donativo', 'lineup', 'Lineup', 'como-chegar', 'Galeria', 'galeria'],
+        hideFooterInRoutes: ['galeria'],
         drawer: false,
         snackbar: {
             visible: false,
@@ -171,6 +172,11 @@ export default {
         showMenuTitleDegrade () {
             if (this.showTitleDegrade.includes(this.$route.name)) return true
             return false
+        },
+
+        showFooter () {
+            if (this.hideFooterInRoutes.includes(this.$route.name)) return false
+            return true
         },
 
         goToRoute (item) {

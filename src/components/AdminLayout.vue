@@ -105,10 +105,10 @@ export default {
         items: [
             { title: 'Usuários', icon: 'mdi-account-circle-outline', route: '/admin/users' },
             { title: 'Line Up', icon: 'mdi-format-list-bulleted-type', route: '/admin/lineup' },
-            { title: 'Bilhetes', icon: 'mdi-ticket-confirmation-outline', route: '/home' },
-            { title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/home' },
+            { title: 'Vídeos', icon: 'mdi-youtube', route: '/admin/video' },
+            /*{ title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/home' },
             { title: 'Como chegar?', icon: 'mdi-map-marker', route: '/home' },
-            { title: 'Termos e política', icon: 'mdi-information-slab-circle-outline', route: '/home' },
+            { title: 'Termos e política', icon: 'mdi-information-slab-circle-outline', route: '/home' },*/
 
         ],
     }),
