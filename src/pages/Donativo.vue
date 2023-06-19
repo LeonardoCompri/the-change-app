@@ -1,31 +1,32 @@
 <template>
-  <v-container class="box overflow-x-hidden pt-0">
-    <v-row class="mt-1 py-1" style="position: absolute;">
-      <v-col class="px-8" cols="3" no-gutters>
-        <v-icon @click="$router.push('/home')" color="#fff">
-          mdi-arrow-left
-        </v-icon>
-      </v-col>
-      <v-col>
-        <span class="inter text">Donativo</span>
-      </v-col>
-    </v-row>
+  <v-container class="box">
 
-    <v-row class="box-inicio px-6 mt-0">
-      <v-col class="d-flex flex-column justify-end aling-center" cols="12">
-        <p class="azeret page-title mb-1">
-          Juntos somos a Mudança.
-        </p>
-        <p class="inter page-subtitle">
-          Obrigado por ajudares esta causa
-        </p>
-      </v-col>
-    </v-row>
-    
-    <v-row class="px-6">
+
+
+
+
+      <div class="box-inicio mt-0" :style="`margin: -12px !important; display: flex !important`">
+
+          <div class="d-flex flex-column aling-center"
+               style="align-self: end; background: linear-gradient(180deg, rgba(6, 5, 24, 0) 24.94%, #060518 98.5%); padding-top: 50px; width: 100%"
+          >
+              <v-col class="px-6" cols="12">
+                  <p class="azeret page-title mb-1">
+                      Juntos somos a Mudança.
+                  </p>
+                  <p class="inter page-subtitle">
+                      Obrigado por ajudares esta causa
+                  </p>
+              </v-col>
+          </div>
+
+      </div>
+
+
+    <v-row class="px-6 mt-10">
       <v-col cols="12">
         <p class="inter text-1">
-          Vamos transformar vidas, espalhar amor e esperança, e mostrar ao mundo que a fé pode mover montanhas! 
+          Vamos transformar vidas, espalhar amor e esperança, e mostrar ao mundo que a fé pode mover montanhas!
         </p>
       </v-col>
     </v-row>
@@ -86,13 +87,14 @@
 
 <style scoped>
   .box{
-    height: 100%;
+    height: 100vh;
     background-color: #060518;
   }
 
   .box-inicio{
-    height: 440px;
-    background-image: url("../assets/donativo.jpg");
+      height: 440px;
+      background-image: url("../assets/donativo.jpg");
+      background-size: 100%;
   }
 
   .azeret{

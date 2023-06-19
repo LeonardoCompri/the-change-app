@@ -27,6 +27,7 @@
     name: 'App',
     computed: {
         isRouteInAdminPanel() {
+            console.log(this.$route.path.startsWith('/admin'))
             return this.$route.path.startsWith('/admin');
         }
     }

@@ -1,22 +1,40 @@
 <template>
     <v-app>
-        <v-app-bar app v-if="showMenu()" class="bgmenu">
-            <v-avatar
+        <v-app-bar
+           :app="!showMenuTitleDegrade()"
+           v-show="showMenu()"
+           :class="getClassMenu()"
+           dark
+           :color="!showMenuTitleDegrade() ? '' : 'transparent'"
+           :absolute="showMenuTitleDegrade()"
+           :elevation="showMenuTitleDegrade() ? 0 : 1"
+
+        >
+            <template v-if="showMenuTitleDegrade()">
+                <v-icon dark @click="$router.push('/home')">mdi-arrow-left</v-icon>
+                <v-toolbar-title class="ml-5">{{ capitalizeFirstLetter($route.name) }}</v-toolbar-title>
+            </template>
+            <template v-else>
+                <v-avatar
                     color="white"
                     size="40"
-            >
-                <span class="white--text text-h5">36</span>
-            </v-avatar>
+                >
+                    <span class="white--text text-h5">36</span>
+                </v-avatar>
+            </template>
+
             <v-spacer></v-spacer>
             <v-app-bar-nav-icon
                     dark
-                    @click.stop="drawer = !drawer"
+                    @click="drawer = !drawer"
             ></v-app-bar-nav-icon>
+
         </v-app-bar>
+
 
         <v-navigation-drawer
                 v-model="drawer"
-                absolute
+                fixed
                 temporary
                 dark
                 v-if="showMenu()"
@@ -77,20 +95,32 @@
             </v-list>
 
 
-            <div style="flex: 1; display: flex">
-                <div style="display: flex;justify-content: space-between;width: 100%;">
-                    <a target="_blank" href="https://instagram.com/thechangelisbon?igshid=MjEwN2IyYWYwYw=="><img src="/icons/instagram-colored.svg" width="38px"></a>
-                    <a target="_blank" href="http://www.tiktok.com/@thechangelisbon"><img src="/icons/tiktok-colored.svg" width="38px"></a>
-                    <a target="_blank" href="https://www.facebook.com/thechangelisbon/"><img src="/icons/facebook-colored.svg" width="38px"></a>
-                    <a target="_blank" href="whatsapp://send?text='Venha Fazer parte da Mudança, https://thechangearrive.com'"><img src="/icons/whatsapp-colored.svg" width="38px"></a>
+            <div style="flex: 1; display: flex; margin-top: 50px; margin-left: 15px">
+                <div style="display: flex;width: 80%;">
+                    <a class="mr-5" target="_blank" href="https://instagram.com/thechangelisbon?igshid=MjEwN2IyYWYwYw=="><img src="/icons/instagram-colored.svg" width="38px"></a>
+                    <a class="mr-5" target="_blank" href="http://www.tiktok.com/@thechangelisbon"><img src="/icons/tiktok-colored.svg" width="38px"></a>
+                    <a class="mr-5" target="_blank" href="https://www.facebook.com/thechangelisbon/"><img src="/icons/facebook-colored.svg" width="38px"></a>
+                    <a class="mr-5" target="_blank" href="whatsapp://send?text='Venha Fazer parte da Mudança, https://thechangearrive.com'"><img src="/icons/whatsapp-colored.svg" width="38px"></a>
                 </div>
             </div>
         </v-navigation-drawer>
 
         <v-main>
             <router-view></router-view>
-        </v-main>
+            <v-bottom-navigation fixed class="bottomNav">
+                <v-btn @click="$router.push('/home')">
+                    <v-icon>mdi-home</v-icon>
+                </v-btn>
 
+                <v-btn @click="$router.push('/lineup')">
+                    <v-icon>mdi-format-list-bulleted-type</v-icon>
+                </v-btn>
+
+                <v-btn @click="$router.push('/profile')">
+                    <v-icon>mdi-account-circle-outline</v-icon>
+                </v-btn>
+            </v-bottom-navigation>
+        </v-main>
         <v-snackbar :color="snackbar.color" v-model="snackbar.visible" :bottom="'bottom'" :right="'right'" :timeout="snackbar.timeout">
             {{ snackbar.message }}
             <template v-slot:action="{ attrs }">
@@ -113,7 +143,8 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
     data: () => ({
-        hiddenInRoutes: ['login', 'inicio', 'donativo', 'como-chegar'],
+        hiddenInRoutes: ['login', 'inicio'],
+        showTitleDegrade: ['donativo', 'lineup', 'Lineup', 'como-chegar'],
         drawer: false,
         snackbar: {
             visible: false,
@@ -122,7 +153,7 @@ export default {
             color: 'light-blue darken-4',
         },
         items: [
-            { title: 'A minha conta', icon: 'mdi-account-circle-outline', route: '/home' },
+            { title: 'A minha conta', icon: 'mdi-account-circle-outline', route: '/profile' },
             { title: 'Line Up', icon: 'mdi-format-list-bulleted-type', route: '/lineup' },
             { title: 'Bilhetes', icon: 'mdi-ticket-confirmation-outline', route: '/bilhetes' },
             { title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/donativo' },
@@ -136,6 +167,12 @@ export default {
             if (this.hiddenInRoutes.includes(this.$route.name)) return false
             return true
         },
+
+        showMenuTitleDegrade () {
+            if (this.showTitleDegrade.includes(this.$route.name)) return true
+            return false
+        },
+
         goToRoute (item) {
             if ('route' in item) this.$router.push(item.route)
         },
@@ -144,6 +181,20 @@ export default {
             sessionStorage.removeItem("usuario")
             sessionStorage.removeItem("token")
             this.$router.push('/login')
+        },
+
+        capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+
+
+        getClassMenu () {
+            if (this.showMenuTitleDegrade()) {
+                return 'bgmenuDegrade'
+            }
+
+            return 'bgmenu'
+
         }
 
     },
@@ -162,7 +213,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .custom-loader {
     animation: loader 1s infinite;
     display: flex;
@@ -210,5 +261,19 @@ export default {
 
 .bgmenu{
     background-color: #060518 !important;
+}
+.bgmenuDegrade{
+    background: linear-gradient(180deg, #060518 3.65%, rgba(6, 5, 24, 0) 100%);
+}
+
+.bottomNav {
+    background-color: #2F3A4B;
+    justify-content: space-around;
+    box-shadow: 0px -16px 16px rgba(6, 5, 24, 0.26);
+    height: 80px !important;
+}
+
+.bottomNav * {
+    color: #FFF !important;
 }
 </style>

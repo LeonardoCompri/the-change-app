@@ -73,7 +73,7 @@
           let resp = await this.login(this.user)
           if (resp.status) {
             this.$eventHub.$emit('snackBar', {color: 'success', message: 'Bem vindo'})
-            this.$router.push('/home')
+            this.$router.push('/admin')
           } else {
             this.$eventHub.$emit('snackBar', {color: 'error', message: 'Usuário ou senha inválido'})
           }

@@ -59,11 +59,13 @@
           v-for="(line,index) in lineup"
           :key="index"
           class="mx-1"
+
         >
           <v-img
             max-height="215"
             max-width="161"
-            :src="line.src"
+            :src="getApi + '/images-lineup/' + line.image"
+            @click="$router.push('/lineup/' + line.id)"
           ></v-img>
         </v-slide-item>
       </v-slide-group>
@@ -227,17 +229,14 @@
 </template>
 
 <script>
+  import {mapActions} from "vuex";
+
   export default {
     name: 'Home',
     data () {
       return {
         slideGroup: 0,
-        lineup: [
-          {src: require("../assets/img_1.png")},
-          {src: require("../assets/img_1.png")},
-          {src: require("../assets/img_1.png")},
-          {src: require("../assets/img_1.png")}
-        ],
+        lineup: [],
         videos: [
           {src: "https://thechangearrive.com/video.mp4"},
           {src: "https://thechangearrive.com/video.mp4"},
@@ -255,10 +254,28 @@
           {src: require("../assets/igrejas/igreja_1.png")},
           {src: require("../assets/igrejas/igreja_2.png")},
           {src: require("../assets/igrejas/igreja_3.png")},
-        ]
+        ],
+
+          isLoadingLineup: true,
+          getApi: process.env.VUE_APP_API
       }
     },
-    created() {
+    methods: {
+        ...mapActions('lineup', ['lisLineup']),
+      async loadLineups () {
+        this.isLoadingLineup = true
+
+          const lineups = await this.lisLineup()
+
+          if (lineups && lineups.data) {
+              this.lineup = lineups.data
+          }
+
+
+        this.isLoadingLineup = false
+      }
+    },
+    mounted() {
       this.interval = setInterval(() => {
         if(this.slideGroup == this.igrejas.length){
           this.slideGroup = -1;
@@ -266,6 +283,8 @@
 
         this.slideGroup++;
       }, 700)
+
+        this.loadLineups()
     }
   }
 </script>
@@ -278,6 +297,7 @@
   .box{
     height: 100%;
     background-color: #060518;
+      padding-bottom: 90px;
   }
 
   .azeret{

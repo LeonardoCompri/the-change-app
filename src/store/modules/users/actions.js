@@ -5,8 +5,8 @@ export default {
         try {
             let {data} = await api.post("users/login", credenciais)
             if (data.status) {
-                let {user, token} = data
-                commit("SET_USER", user)
+                let {usuario, token} = data
+                commit("SET_USER", usuario)
                 commit("SET_TOKEN", token)
             }
             return data
@@ -22,6 +22,16 @@ export default {
             return data
         } catch (e) {
             return {status: false}
+        }
+    },
+
+
+    async lisUsers({commit, getters}, params) {
+        try {
+            let {data} = await api.get("users", { params })
+            return data
+        } catch (e) {
+            return null
         }
     }
 }

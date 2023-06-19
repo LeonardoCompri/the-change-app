@@ -7,7 +7,7 @@ let $api = axios.create({
 })
 
 $api.interceptors.request.use( async config => {
-  config.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token')
+  config.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
   return config
 }, err => {
   return Promise.reject(err)

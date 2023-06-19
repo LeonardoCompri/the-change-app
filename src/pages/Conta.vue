@@ -66,7 +66,7 @@ export default {
     name: "Conta",
     data() {
         return {
-            profilePhoto: require("../assets/profile.jpg"),
+            profilePhoto: require("../assets/profile.png"),
             name: "Ricardo Afonso",
             option1: {
                 title: "Editar conta",
@@ -108,7 +108,7 @@ export default {
 };
 </script>
   
-<style>
+<style scoped>
 .v-list-item--active {
     background-color: rgba(0, 0, 0, 0.1);
 }

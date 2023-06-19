@@ -1,15 +1,7 @@
 <template>
     <v-app>
-        <v-app-bar app v-if="showMenu()" class="bgmenu">
-            <v-avatar
-                    color="white"
-                    size="40"
-            >
-                <span class="white--text text-h5">36</span>
-            </v-avatar>
-            <v-spacer></v-spacer>
+        <v-app-bar app v-if="showMenu()">
             <v-app-bar-nav-icon
-                    dark
                     @click.stop="drawer = !drawer"
             ></v-app-bar-nav-icon>
         </v-app-bar>
@@ -20,7 +12,6 @@
                 temporary
                 dark
                 v-if="showMenu()"
-                width="80%"
                 color="#2D3540"
         >
             <div style="margin-top: 50px">
@@ -75,16 +66,6 @@
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
-
-
-            <div style="flex: 1; display: flex">
-                <div style="display: flex;justify-content: space-between;width: 100%;">
-                    <a target="_blank" href="https://instagram.com/thechangelisbon?igshid=MjEwN2IyYWYwYw=="><img src="/icons/instagram-colored.svg" width="38px"></a>
-                    <a target="_blank" href="http://www.tiktok.com/@thechangelisbon"><img src="/icons/tiktok-colored.svg" width="38px"></a>
-                    <a target="_blank" href="https://www.facebook.com/thechangelisbon/"><img src="/icons/facebook-colored.svg" width="38px"></a>
-                    <a target="_blank" href="whatsapp://send?text='Venha Fazer parte da Mudança, https://thechangearrive.com'"><img src="/icons/whatsapp-colored.svg" width="38px"></a>
-                </div>
-            </div>
         </v-navigation-drawer>
 
         <v-main>
@@ -122,8 +103,8 @@ export default {
             color: 'light-blue darken-4',
         },
         items: [
-            { title: 'A minha conta', icon: 'mdi-account-circle-outline', route: '/home' },
-            { title: 'Line Up', icon: 'mdi-format-list-bulleted-type', route: '/home' },
+            { title: 'Usuários', icon: 'mdi-account-circle-outline', route: '/admin/users' },
+            { title: 'Line Up', icon: 'mdi-format-list-bulleted-type', route: '/admin/lineup' },
             { title: 'Bilhetes', icon: 'mdi-ticket-confirmation-outline', route: '/home' },
             { title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/home' },
             { title: 'Como chegar?', icon: 'mdi-map-marker', route: '/home' },
@@ -162,7 +143,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .custom-loader {
     animation: loader 1s infinite;
     display: flex;
@@ -208,7 +189,4 @@ export default {
 }
 
 
-.bgmenu{
-    background-color: #060518 !important;
-}
 </style>
