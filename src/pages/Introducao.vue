@@ -20,19 +20,19 @@
                         <v-img src="../assets/EnglishIcon.png" max-height="42" max-width="42" contain></v-img>
                         <p class="label-white">English</p>
                     </div>
-                    <v-radio value="English" class="radio-white" color="white"></v-radio>
+                    <v-radio dark value="en" class="radio-white" color="white"></v-radio>
                 </v-row>
                 <v-row class="option">
                     <div class="option-container">
                         <v-img src="../assets/PortugueseIcon.png" max-height="42" max-width="42" contain></v-img>
                         <p class="label-white">Portuguese</p>
                     </div>
-                    <v-radio value="Portuguese" class="radio-white" color="white"></v-radio>
+                    <v-radio dark value="pt" class="radio-white" color="white"></v-radio>
                 </v-row>
             </v-radio-group>
         </v-col>
         <v-col class="mt-2 d-flex justify-center bottom-card" cols="12" no-gutters>
-            <v-btn text class="mt-n1 px-0 btn-next" @click="$router.push('/carrossel')">
+            <v-btn text class="mt-n1 px-0 btn-next" @click="onChooseLanguage()">
                 Próximo
             </v-btn>
         </v-col>
@@ -48,7 +48,10 @@ export default {
         }
     },
     methods: {
-
+        onChooseLanguage () {
+            localStorage.setItem('lang', this.language)
+            this.$router.push('/carrossel')
+        }
     }
 }
 </script>

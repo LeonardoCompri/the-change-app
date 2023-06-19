@@ -29,6 +29,22 @@ Vue.use(DatetimePicker)
 
 Vue.config.productionTip = false
 
+
+const langs = {
+    pt: require('./langs/pt.json'),
+    en: require('./langs/en.json'),
+}
+
+Vue.prototype.$trans = (string) => {
+    const lang = localStorage.getItem('lang') ?? 'pt'
+
+    if (langs[lang] && langs[lang][string]) {
+        return langs[lang][string]
+    }
+    return string
+}
+
+
 new Vue({
   vuetify,
   render: h => h(App),

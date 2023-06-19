@@ -35,7 +35,7 @@ export default {
             step: 0,
             items: [
                 {
-                    title: 'Chegou um momento de mudança para o mundo!',
+                    title: this.$trans('Chegou um momento de mudança para o mundo!'),
                     text: 'Explora toda a informação sobre o evento THE CHANGE - a mudança chegou!',
                     backgroundImage: '/images/step1Background.png'
                 },
