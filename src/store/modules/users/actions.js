@@ -33,5 +33,21 @@ export default {
         } catch (e) {
             return null
         }
+    },
+
+
+    async updateProfile ({commit, getters}, form) {
+        try {
+            const { data } = await api.post('/profile', form, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+
+            commit("SET_USER", data)
+            return data
+        } catch (e) {
+            return false
+        }
     }
 }

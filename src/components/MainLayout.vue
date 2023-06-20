@@ -17,11 +17,17 @@
                     <v-toolbar-title class="ml-5">{{ capitalizeFirstLetter($route.name) }}</v-toolbar-title>
                 </template>
                 <template v-else>
-                    <v-avatar
-                            color="white"
-                            size="40"
-                    >
-                        <span class="white--text text-h5">36</span>
+
+
+                    <v-avatar size="40" color="rgb(205, 32, 39)" v-if="getUser">
+                        <template v-if="getUser.photo">
+                            <!-- Exibir a foto de perfil -->
+                            <img :src="getApi + '/images-profile/' + getUser.photo" alt="Foto de perfil">
+                        </template>
+                        <template v-else>
+                            <!-- Exibir as iniciais do nome -->
+                            <span class="avatar-initials white--text text-h5">{{ obterIniciaisNome() }}</span>
+                        </template>
                     </v-avatar>
                 </template>
 
@@ -46,17 +52,23 @@
                 <div style="margin-top: 50px">
                     <v-btn text><v-icon @click="drawer = false">mdi-keyboard-backspace</v-icon></v-btn>
                 </div>
-
-                <v-avatar
-                        color="white"
-                        size="40"
-                        class="ml-4 mt-4"
-                >
-                    <span class="white--text text-h5">36</span>
+                <v-avatar size="60" color="rgb(205, 32, 39)" class="ml-4 mt-4" v-if="getUser">
+                    <template v-if="getUser.photo">
+                        <!-- Exibir a foto de perfil -->
+                        <img :src="getApi + '/images-profile/' + getUser.photo" alt="Foto de perfil">
+                    </template>
+                    <template v-else>
+                        <!-- Exibir as iniciais do nome -->
+                        <span class="avatar-initials white--text text-h5">{{ obterIniciaisNome() }}</span>
+                    </template>
                 </v-avatar>
+
+
+
+
                 <v-list-item>
                     <v-list-item-content>
-                        <v-list-item-title>{{ getUser ? getUser.username : 'Sem nome' }}</v-list-item-title>
+                        <v-list-item-title>{{ getUser ? getUser.name : 'Sem nome' }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
 
@@ -147,9 +159,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
     data: () => ({
-        hiddenInRoutes: ['login', 'inicio', 'carrossel', 'cadastro', 'alterar-palavra-passe', 'verificacao'],
+        hiddenInRoutes: ['login', 'inicio', 'carrossel', 'cadastro', 'alterar-palavra-passe', 'verificacao', 'profile-update'],
         showTitleDegrade: ['donativo', 'lineup', 'Lineup', 'como-chegar', 'Galeria', 'galeria'],
-        hideFooterInRoutes: ['galeria', 'introducao', 'carrossel', 'login', 'cadastro', 'alterar-palavra-passe', 'verificacao'],
+        hideFooterInRoutes: ['galeria', 'introducao', 'carrossel', 'login', 'cadastro', 'alterar-palavra-passe', 'verificacao', 'profile-update'],
         drawer: false,
         snackbar: {
             visible: false,
@@ -164,8 +176,8 @@ export default {
             { title: 'Donativo', icon: 'mdi-hand-coin-outline', route: '/donativo' },
             { title: 'Como chegar?', icon: 'mdi-map-marker', route: '/como-chegar' },
             { title: 'Termos e política', icon: 'mdi-information-slab-circle-outline', route: '/termos' },
-
         ],
+        getApi: process.env.VUE_APP_API
     }),
     methods: {
         showMenu () {
@@ -210,6 +222,12 @@ export default {
 
             return 'bgmenu'
 
+        },
+
+        obterIniciaisNome() {
+            const nomes = this.getUser.name.split(' '); // Divide o nome em partes
+            const iniciais = nomes.map(nome => nome.charAt(0)); // Obtém as iniciais
+            return iniciais.join('').toUpperCase(); // Retorna as iniciais em maiúsculas
         }
 
     },

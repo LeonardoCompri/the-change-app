@@ -3,9 +3,18 @@
         <v-row>
             <v-col cols="12" class="text-center">
                 <v-avatar size="120">
-                    <img src="../assets/profile.png" alt="Profile photo">
+                    <v-avatar size="120" color="rgb(205, 32, 39)">
+                        <template v-if="getUser.photo">
+                            <!-- Exibir a foto de perfil -->
+                            <img :src="getApi + '/images-profile/' + getUser.photo" alt="Foto de perfil">
+                        </template>
+                        <template v-else>
+                            <!-- Exibir as iniciais do nome -->
+                            <span class="avatar-initials white--text text-h5">{{ obterIniciaisNome() }}</span>
+                        </template>
+                    </v-avatar>
                 </v-avatar>
-                <div class="mt-2 name">{{ name }}</div>
+                <div class="mt-2 name">{{ getUser.name }}</div>
                 <v-layout class="mt-4 d-flex">
                     <v-btn
                         style="background-color: #CD2027 !important; font-family: 'Azeret Mono'; font-style: normal; text-transform: none;"
@@ -98,16 +107,52 @@
         <v-row class="mb-8">
             <v-col cols="12" md="8">
                 <v-list class="transparent">
+
+                    <v-list-item @click="$router.push('/profile-update')">
+                        <v-list-item-avatar style="border-radius: 2px !important;">
+                            <v-img src="../assets/user.svg"></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content class="azeret" style="color:#fff">
+                            <v-list-item-title>{{ $trans("Editar Conta") }}</v-list-item-title>
+                        </v-list-item-content>
+                        <v-list-item-action>
+                            <v-icon color="#fff">mdi-pencil-outline</v-icon>
+                        </v-list-item-action>
+                    </v-list-item>
+
+                    <v-list-item @click="$router.push('/profile-update-pass')">
+                        <v-list-item-avatar style="border-radius: 2px !important;">
+                            <v-img src="../assets/password.svg"></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content class="azeret" style="color:#fff">
+                            <v-list-item-title>{{ $trans("Alterar Palavra Passe") }}</v-list-item-title>
+                        </v-list-item-content>
+                        <v-list-item-action>
+                            <v-icon color="#fff">mdi-pencil-outline</v-icon>
+                        </v-list-item-action>
+                    </v-list-item>
+
+                    <!--<v-list-item>
+                        <v-list-item-avatar style="border-radius: 2px !important;">
+                            <v-img src="../assets/world.svg"></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content class="azeret" style="color:#fff">
+                            <v-list-item-title>{{ $trans("Escolher idioma") }}</v-list-item-title>
+                        </v-list-item-content>
+                        <v-list-item-action>
+                            <v-icon color="#fff">mdi-pencil-outline</v-icon>
+                        </v-list-item-action>
+                    </v-list-item>-->
+
                     <v-list-item @click="logout()">
                         <v-list-item-avatar style="border-radius: 2px !important;">
                             <v-img src="../assets/close.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content class="azeret" style="color:#fff">
-                            <v-list-item-title>{{ option1.title }}</v-list-item-title>
-                            <v-list-item-subtitle>{{ option1.subtitle }}</v-list-item-subtitle>
+                            <v-list-item-title>{{ $trans("Terminar sessão") }}</v-list-item-title>
                         </v-list-item-content>
                         <v-list-item-action>
-                            <v-icon color="#fff">{{ option1.icon }}</v-icon>
+
                         </v-list-item-action>
                     </v-list-item>
                 </v-list>
@@ -117,30 +162,17 @@
 </template>
   
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: "Conta",
     data() {
         return {
             profilePhoto: require("../assets/profile.png"),
-            name: "Ricardo Afonso",
-            option1: {
-                title: this.$trans("Terminar sessão"),
-                image: require("../assets/edit.png"),
-                icon: "mdi-chevron-right"
-            },
-            option2: {
-                title: "Opção 2",
-                image: require("../assets/EnglishIcon.png"),
-                icon: "mdi-chevron-right"
-            },
-            option3: {
-                title: "Opção 3",
-                image: require("../assets/close.png"),
-                icon: "mdi-chevron-right"
-            },
             backgroundImage: require("../assets/step1Background.png"),
             dialog: false,
-            aceitouJesus: false
+            aceitouJesus: false,
+            getApi: process.env.VUE_APP_API
         };
     },
     methods: {
@@ -157,6 +189,12 @@ export default {
             sessionStorage.removeItem("usuario")
             sessionStorage.removeItem("token")
             this.$router.push('/login')
+        },
+
+        obterIniciaisNome() {
+            const nomes = this.getUser.name.split(' '); // Divide o nome em partes
+            const iniciais = nomes.map(nome => nome.charAt(0)); // Obtém as iniciais
+            return iniciais.join('').toUpperCase(); // Retorna as iniciais em maiúsculas
         }
     },
     mounted() {
@@ -166,7 +204,11 @@ export default {
     beforeDestroy() {
         document.body.style.backgroundImage = null;
         document.body.style.backgroundSize = null;
-    }
+    },
+
+    computed: {
+        ...mapGetters('users', ['getUser']),
+    },
 };
 </script>
   

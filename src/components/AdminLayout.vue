@@ -94,7 +94,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
     data: () => ({
-        hiddenInRoutes: ['login', 'inicio'],
+        hiddenInRoutes: ['LoginAdmin', 'inicio'],
         drawer: false,
         snackbar: {
             visible: false,
