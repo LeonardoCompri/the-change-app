@@ -11,13 +11,13 @@
                         style="background-color: #CD2027 !important; font-family: 'Azeret Mono'; font-style: normal; text-transform: none;"
                         class="mr-2 button-red flex-grow-1 flex-shrink-1 white--text" @click="openDonation">
                         <v-icon left>mdi-heart</v-icon>
-                        Donativo
+                        <span v-text="$trans('Donativo')"></span>
                     </v-btn>
                     <v-btn
                         style="background-color: #2F3A4B !important; font-family: 'Azeret Mono'; font-style: normal; text-transform: none;"
                         color="gray dark-3" class="button flex-grow-1 flex-shrink-1 white--text" @click="openTickets">
                         <v-icon left>mdi-ticket</v-icon>
-                        Bilhetes
+                        <span v-text="$trans('Bilhetes')"></span>
                     </v-btn>
                 </v-layout>
             </v-col>
@@ -26,14 +26,13 @@
         <v-row>
             <v-col cols="12">
                 <v-card class="card-1 pb-4">
-                    <v-card-title class="azeret title-card-1">
-                        Queres aceitar Jesus como teu senhor e salvador?
+                    <v-card-title class="azeret title-card-1" v-text="$trans('Queres aceitar Jesus como teu senhor e salvador?')">
                     </v-card-title>
 
                     <v-row class="px-4">
                         <v-col cols="8" v-if="!aceitouJesus">
                             <v-btn text class="responder-card-1 px-0" @click="dialog = true">
-                                Responder
+                                <span v-text="$trans('Responder')"></span>
                                 <v-icon color="#CD2027" size="20" class="mt-1 ml-2">mdi-chevron-right-circle-outline</v-icon>
                             </v-btn>
                         </v-col>
@@ -54,15 +53,12 @@
 
         <v-dialog v-model="dialog" persistent max-width="90%">
             <v-card>
-                <v-card-title class="azeret title-dialog">
-                    Queres aceitar Jesus como teu senhor e salvador?
+                <v-card-title class="azeret title-dialog" v-text="$trans('Queres aceitar Jesus como teu senhor e salvador?')">
                 </v-card-title>
                 <v-card-text class="mt-4">
-                    <v-btn class="azeret btn-nao" block x-large @click="dialog = false">
-                        Não
+                    <v-btn class="azeret btn-nao" block x-large @click="dialog = false" v-text="$trans('Não')">
                     </v-btn>
-                    <v-btn class="azeret btn-sim mt-2" block x-large @click="dialog = false; aceitouJesus = true">
-                        Sim
+                    <v-btn class="azeret btn-sim mt-2" block x-large @click="dialog = false; aceitouJesus = true" v-text="$trans('Sim')">
                     </v-btn>
 
                     <v-row>
@@ -77,18 +73,15 @@
         <v-row>
             <v-col cols="12">
                 <v-card class="card-2 pb-4">
-                    <v-card-title class="azeret title-card-2">
-                        Se já Aceitaste Jesus
+                    <v-card-title class="azeret title-card-2" v-text="$trans('Se já Aceitaste Jesus')">
                     </v-card-title>
 
-                    <v-card-subtitle class="inter subtitle-card">
-                        Queres re-dedicar a tua vida a Jesus, como o teu senhor e salvador?
+                    <v-card-subtitle class="inter subtitle-card" v-text="$trans('Queres re-dedicar a tua vida a Jesus, como o teu senhor e salvador?')">
                     </v-card-subtitle>
 
                     <v-row class="px-4">
                         <v-col v-if="aceitouJesus">
-                            <p class="azeret sim2">
-                                SIM
+                            <p class="azeret sim2" v-text="$trans('SIM')">
                             </p>
                         </v-col>
                         
@@ -131,7 +124,7 @@ export default {
             profilePhoto: require("../assets/profile.png"),
             name: "Ricardo Afonso",
             option1: {
-                title: "Terminar sessão",
+                title: this.$trans("Terminar sessão"),
                 image: require("../assets/edit.png"),
                 icon: "mdi-chevron-right"
             },

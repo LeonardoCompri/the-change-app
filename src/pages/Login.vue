@@ -9,7 +9,7 @@
       ></v-img>
     </v-col>
     <v-col class="mt-12" cols="12">
-      <p class="text-entrar">Entrar</p>
+      <p class="text-entrar" v-text="$trans('Entrar')"></p>
       <v-form>
         <v-text-field
           outlined
@@ -40,8 +40,7 @@
             ></v-switch>
           </v-col>
           <v-col class="mt-n1" cols="5">
-            <v-btn text class="btn-forgot" @click="$router.push('/alterar-palavra-passe')">
-              Forgot password?
+            <v-btn text class="btn-forgot" @click="$router.push('/alterar-palavra-passe')" v-text="$trans('Esquece a senha?')">
             </v-btn>
           </v-col>
         </v-row>
@@ -53,19 +52,17 @@
           @click="onLogin"
           :loading="isLoading"
           :disabled="isLoading"
-
+          v-text="$trans('Enviar')"
         >
-          Enviar
         </v-btn>
       </v-form>
     </v-col>
     <v-col class="mt-6 d-flex justify-center" cols="12" no-gutters>
-      <span class="text-registrar">
-        Não tenho conta?
-        <v-btn text class="mt-n1 px-0 btn-registrar" @click="$router.push('/cadastro')">
-          Registrar
-        </v-btn>
+      <span class="text-registrar" v-text="$trans('Não tenho conta?')">
       </span>
+      <v-btn text class="mt-n2 px-2 btn-registrar" @click="$router.push('/cadastro')" v-text="$trans('Registrar')">
+        
+      </v-btn>
     </v-col>
   </v-row>
 </template>

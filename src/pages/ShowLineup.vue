@@ -36,8 +36,7 @@
 
           <v-row class="px-6 mt-10">
               <v-col cols="12">
-                  <p class="inter text-1">
-                      BIO
+                  <p class="inter text-1" v-text="$trans('BIO')">
                   </p>
                   <p class="inter text-1">
                       {{ lineup.bio }}
@@ -47,8 +46,7 @@
 
           <v-row class="mt-2 px-6">
               <v-col cols="12">
-                  <p class="inter text-2">
-                      Clica em baixo para conseguir o bilhete.
+                  <p class="inter text-2" v-text="$trans('Clica em baixo para conseguir o bilhete.')">
                   </p>
               </v-col>
           </v-row>

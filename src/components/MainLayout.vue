@@ -147,9 +147,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'App',
     data: () => ({
-        hiddenInRoutes: ['login', 'inicio', 'carrossel', 'cadastro', 'alterar-palavra-passe'],
+        hiddenInRoutes: ['login', 'inicio', 'carrossel', 'cadastro', 'alterar-palavra-passe', 'verificacao'],
         showTitleDegrade: ['donativo', 'lineup', 'Lineup', 'como-chegar', 'Galeria', 'galeria'],
-        hideFooterInRoutes: ['galeria', 'introducao', 'carrossel', 'login', 'cadastro', 'alterar-palavra-passe'],
+        hideFooterInRoutes: ['galeria', 'introducao', 'carrossel', 'login', 'cadastro', 'alterar-palavra-passe', 'verificacao'],
         drawer: false,
         snackbar: {
             visible: false,

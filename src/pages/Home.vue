@@ -11,43 +11,37 @@
 
     <v-row class="mt-12">
       <v-col class="d-flex justify-center py-0">
-        <span class="inter page-subtitle">
-          // A Mudança Chegou!
+        <span class="inter page-subtitle" v-text="$trans('// A Mudança Chegou!')">
         </span>
       </v-col>
     </v-row>
     <v-row>
       <v-col class="d-flex justify-center pt-1 pb-0">
-        <span class="azeret page-title">
-          Faço Parte da mudança!
+        <span class="azeret page-title" v-text="$trans('Faço Parte da mudança!')">
         </span>
       </v-col>
     </v-row>
 
     <v-row class="px-4 mt-12">
       <v-col cols="6">
-        <v-btn class="azeret btn-text" block large color="#CD2027" @click="$router.push('/donativo')">
-          Donativo
+        <v-btn class="azeret btn-text" block large color="#CD2027" @click="$router.push('/donativo')" v-text="$trans('Donativo')">
         </v-btn>
       </v-col>
 
       <v-col cols="6">
-        <v-btn class="azeret btn-text" block large color="#2F3A4B">
-          Bilhetes
+        <v-btn class="azeret btn-text" block large color="#2F3A4B" v-text="$trans('Bilhetes')">          
         </v-btn>
       </v-col>
     </v-row>
 
     <v-row class="px-4 mt-8">
       <v-col cols="8">
-        <span class="azeret section-title">
-          Line Up
+        <span class="azeret section-title" v-text="$trans('Line Up')">
         </span>
       </v-col>
       <v-col class="mt-n1 text-right" cols="4">
-        <span class="azeret section-link" @click="$router.push('/lineup')">
-          Ver todos
-        </span>      
+        <span class="azeret section-link" @click="$router.push('/lineup')" v-text="$trans('Ver todos')">
+        </span>
       </v-col>
     </v-row>
 
@@ -73,13 +67,11 @@
     
     <v-row class="px-4" style="background: #2D3540;">
       <v-col cols="12">
-        <p class="inter text-1 mb-0">
-          Acreditamos que chegou um momento de mudança
+        <p class="inter text-1 mb-0" v-text="$trans('Acreditamos que chegou um momento de mudança')">
         </p>
         <v-row>
           <v-col cols="7">
-            <p class="inter text-1">
-              para o mundo!
+            <p class="inter text-1" v-text="$trans('para o mundo!')">
             </p>
           </v-col>
           <v-col class="d-flex justify-center align-center">
@@ -112,21 +104,18 @@
 
     <v-row style="width: 600px; background-color: #040406;">
       <v-col class="at-container">
-        <span class="inter text-2 at-item">
-          // Contamos contigo!
+        <span class="inter text-2 at-item" v-text="$trans('// Contamos contigo!')">
         </span>
       </v-col>
     </v-row>
 
     <v-row class="px-4 mt-8">
       <v-col cols="8">
-        <span class="azeret section-title">
-          Videos
+        <span class="azeret section-title" v-text="$trans('Videos')">
         </span>
       </v-col>
       <v-col class="mt-n1 text-right" cols="4">
-        <span class="azeret section-link" @click="$router.push('/galeria')">
-          Ver todos
+        <span class="azeret section-link" @click="$router.push('/galeria')" v-text="$trans('Ver todos')">
         </span>      
       </v-col>
     </v-row>
@@ -147,7 +136,7 @@
                 <div class="contentCard">
                     <div class="descricao">
                         <p class="title mb-1">{{ video.name }}</p>
-                        <p class="category mb-0">Vídeo</p>
+                        <p class="category mb-0" v-text="$trans('Vídeo')"></p>
                     </div>
                     <img src="/icons/play.svg" class="play">
                 </div>
@@ -180,12 +169,10 @@
         src="../assets/ok.gif"
         ></v-img>
 
-        <p class="azeret text-4 mt-4">
-          Este evento é organizado pela Associação Rodrigues Pereira, Vitae Fest, Charis e outros que estão a juntar-se a este movimento de evangelização em nome de Jesus e unidade da igreja.
+        <p class="azeret text-4 mt-4" v-text="$trans('Este evento é organizado pela Associação Rodrigues Pereira, Vitae Fest, Charis e outros que estão a juntar-se a este movimento de evangelização em nome de Jesus e unidade da igreja.')">
         </p>
         
-        <p class="azeret text-5 mt-8">
-          Organização
+        <p class="azeret text-5 mt-8" v-text="$trans('Organização')">
         </p>
 
         <v-row>
@@ -201,8 +188,7 @@
           </v-col>
         </v-row>
 
-        <p class="azeret text-5 mt-8">
-          Igrejas Organizadoras
+        <p class="azeret text-5 mt-8" v-text="$trans('Igrejas Organizadoras')">          
         </p>
 
         <v-slide-group v-model="slideGroup">
@@ -216,8 +202,7 @@
           </v-slide-item>
         </v-slide-group>
 
-        <p class="azeret text-5 mt-8">
-          Apoios
+        <p class="azeret text-5 mt-8" v-text="$trans('Apoios')">
         </p>
 
         <v-slide-group v-model="slideGroup">

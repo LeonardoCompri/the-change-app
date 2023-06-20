@@ -9,9 +9,8 @@
     </v-row>
     <v-row class="mt-6 px-5" justify="center" no-gutters>
       <v-col cols="12">
-        <p class="title-page">Verificação</p>
-        <span class="text-sub">
-          Enviamos o código de verificação para {{tel}}
+        <p class="title-page" v-text="$trans('Verificação')"></p>
+        <span class="text-sub" v-text="$trans('Enviamos o código de verificação para {{tel}}')">
         </span>
 
         <v-form class="mt-4">
@@ -20,8 +19,7 @@
             type="number"
           ></v-otp-input>
   
-          <v-btn class="btn-enviar pa-6 mt-8" block color="#CD2027">
-            Continuar
+          <v-btn class="btn-enviar pa-6 mt-8" block color="#CD2027" v-text="$trans('Continuar')">
           </v-btn>
         </v-form>
       </v-col>

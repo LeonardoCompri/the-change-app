@@ -1,16 +1,12 @@
 <template>
   <v-container class="box overflow-x-hidden pt-0">
-
-
-
       <div class="box-inicio mt-0" :style="`margin: -12px !important; display: flex !important`">
 
           <div class="d-flex flex-column aling-center"
                style="align-self: end; background: linear-gradient(180deg, rgba(6, 5, 24, 0) 24.94%, #060518 98.5%); padding-top: 50px; width: 100%"
           >
               <v-col class="px-6" cols="12">
-                  <p class="azeret page-title mb-1">
-                      Como Chegar ao Estádio da luz
+                  <p class="azeret page-title mb-1" v-text="$trans('Como Chegar ao Estádio da luz')">                      
                   </p>
               </v-col>
           </div>
@@ -19,8 +15,7 @@
     
     <v-row class="px-6 mt-0">
       <v-col cols="12">
-        <p class="inter text-1">
-          Existem diversas formas para vir ao Estádio do Sport Lisboa e Benfica. Conheça as regras de comportamento no Complexo Desportivo.
+        <p class="inter text-1" v-text="$trans('Existem diversas formas para vir ao Estádio do Sport Lisboa e Benfica. Conheça as regras de comportamento no Complexo Desportivo.')">
         </p>
       </v-col>
     </v-row>
@@ -34,7 +29,7 @@
                 <v-icon class="px-0" color="#141414">mdi-bus</v-icon>
               </v-col>
               <v-col cols="10">
-                <span class="header-text">Autocarros</span>
+                <span class="header-text" v-text="$trans('Autocarros')"></span>
               </v-col>
             </v-row>
           </v-expansion-panel-header>
@@ -48,8 +43,7 @@
             
             <v-row>
               <v-col cols="12">
-                <span class="azeret section-text">
-                  Estrada da Luz
+                <span class="azeret section-text" v-text="$trans('Estrada da Luz')">
                 </span>
               </v-col>
             </v-row>
@@ -86,8 +80,7 @@
 
             <v-row>
               <v-col cols="12">
-                <span class="azeret section-text">
-                  Av. Eusébio da Silva Ferreira (2.ª circular)
+                <span class="azeret section-text" v-text="$trans('Av. Eusébio da Silva Ferreira (2.ª circular)')">
                 </span>
               </v-col>
             </v-row>
@@ -124,8 +117,7 @@
 
             <v-row>
               <v-col cols="12">
-                <span class="azeret section-text">
-                  Estação do Colégio Militar
+                <span class="azeret section-text" v-text="$trans('Estação do Colégio Militar')">
                 </span>
               </v-col>
             </v-row>
@@ -169,8 +161,7 @@
 
             <v-row>
               <v-col cols="12">
-                <span class="azeret section-text">
-                  Estação do Colégio Militar
+                <span class="azeret section-text" v-text="$trans('Estação do Colégio Militar')">
                 </span>
               </v-col>
             </v-row>
@@ -214,8 +205,7 @@
 
             <v-row>
               <v-col cols="12">
-                <span class="azeret section-text">
-                  Estação do Colégio Militar
+                <span class="azeret section-text" v-text="$trans('Estação do Colégio Militar')">
                 </span>
               </v-col>
             </v-row>
@@ -260,7 +250,7 @@
                 <v-icon class="px-0" color="#141414">mdi-train</v-icon>
               </v-col>
               <v-col cols="10">
-                <span class="header-text">Comboios</span>
+                <span class="header-text" v-text="$trans('Comboios')"></span>
               </v-col>
             </v-row>
           </v-expansion-panel-header>
@@ -274,8 +264,7 @@
             
             <v-row>
               <v-col cols="12">
-                <span class="azeret section-text">
-                  Estações pŕoximas
+                <span class="azeret section-text" v-text="$trans('Estações pŕoximas')">
                 </span>
               </v-col>
             </v-row>
@@ -283,7 +272,7 @@
             <v-row class="mt-0">
               <v-col cols="12" class="ma-0 pa-0">
                 <ul class="azeret">
-                  <li>Benfica, Sete-Rios</li>
+                  <li v-text="$trans('Benfica, Sete-Rios')"></li>
                 </ul>
               </v-col>
             </v-row>
@@ -297,7 +286,7 @@
                 <v-icon class="px-0" color="#141414">mdi-train-variant</v-icon>
               </v-col>
               <v-col cols="10">
-                <span class="header-text">Metro</span>
+                <span class="header-text" v-text="$trans('Metro')"></span>
               </v-col>
             </v-row>
           </v-expansion-panel-header>
@@ -311,8 +300,7 @@
             
             <v-row>
               <v-col cols="12">
-                <span class="azeret section-text">
-                  Estações pŕoximas
+                <span class="azeret section-text" v-text="$trans('Estações pŕoximas')">
                 </span>
               </v-col>
             </v-row>
@@ -320,7 +308,7 @@
             <v-row class="mt-0">
               <v-col cols="12" class="ma-0 pa-0">
                 <ul class="azeret">
-                  <li>Linha Azul - Colégio-Militar/Luz, Altos-dos-Moinhos</li>
+                  <li v-text="$trans('Linha Azul - Colégio-Militar/Luz, Altos-dos-Moinhos')"></li>
                 </ul>
               </v-col>
             </v-row>

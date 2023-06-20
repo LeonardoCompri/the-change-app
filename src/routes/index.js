@@ -78,50 +78,50 @@ export default new VueRouter({
             path: '/home',
             name: 'home',
             component: Home,
-            beforeEnter: VerifyToken
+            // // beforeEnter: VerifyToken
         },
         {
             path: '/donativo',
             name: 'donativo',
             component: Donativo,
-            beforeEnter: VerifyToken
+            // beforeEnter: VerifyToken
         },
         {
             path: '/lineup/:id',
             name: 'lineup',
             component: ShowLineup,
-            beforeEnter: VerifyToken
+            // beforeEnter: VerifyToken
         },
         {
             path: '/lineup',
             name: 'Lineup',
             component: Lineups,
-            beforeEnter: VerifyToken
+            // beforeEnter: VerifyToken
         },
 
         {
             path: '/galeria',
             name: 'Galeria',
             component: Galeria,
-            beforeEnter: VerifyToken
+            // beforeEnter: VerifyToken
         },
         {
             path: '/galeria/:id',
             name: 'galeria',
             component: ShowGaleria,
-            beforeEnter: VerifyToken
+            // beforeEnter: VerifyToken
         },
         {
             path: '/como-chegar',
             name: 'como-chegar',
             component: ComoChegar,
-            beforeEnter: VerifyToken
+            // beforeEnter: VerifyToken
         },
         {
             path: '/profile',
             name: 'profile',
             component: Conta,
-            beforeEnter: VerifyToken
+            // beforeEnter: VerifyToken
         },
     ]
 })

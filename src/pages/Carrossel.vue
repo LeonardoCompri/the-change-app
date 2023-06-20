@@ -12,12 +12,11 @@
 
 
                           <v-layout justify-space-between>
-                              <v-btn @click="$router.push('/login')" text>Saltar</v-btn>
+                              <v-btn @click="$router.push('/login')" text v-text="$trans('Saltar')"></v-btn>
                               <ul class="custom-indicators">
                                   <li v-for="(item, index) in items" :key="index" :class="{ 'active': index === step }"></li>
                               </ul>
-                              <v-btn @click="nextStep" text>
-                                  Seguinte
+                              <v-btn @click="nextStep" text v-text="$trans('Seguinte')">
                               </v-btn>
                           </v-layout>
                       </v-card>
@@ -36,17 +35,17 @@ export default {
             items: [
                 {
                     title: this.$trans('Chegou um momento de mudança para o mundo!'),
-                    text: 'Explora toda a informação sobre o evento THE CHANGE - a mudança chegou!',
+                    text: this.$trans('Explora toda a informação sobre o evento THE CHANGE - a mudança chegou!'),
                     backgroundImage: '/images/step1Background.png'
                 },
                 {
-                    title: 'Faz parte de um evento transformador!',
-                    text: 'Vamos transformar vidas, espalhar amor e esperança, e mostrar ao mundo que a fé pode mover montanhas!',
+                    title: this.$trans('Faz parte de um evento transformador!'),
+                    text: this.$trans('Vamos transformar vidas, espalhar amor e esperança, e mostrar ao mundo que a fé pode mover montanhas!'),
                     backgroundImage: '/images/step2Background.png'
                 },
                 {
-                    title: 'Fica atento a todas as novidades',
-                    text: 'Junta-te à nossa comunidade e recebe as atualizações mais recentes sobre o evento.',
+                    title: this.$trans('Fica atento a todas as novidades'),
+                    text: this.$trans('Junta-te à nossa comunidade e recebe as atualizações mais recentes sobre o evento.'),
                     backgroundImage: '/images/step3Background.png'
                 }
             ],

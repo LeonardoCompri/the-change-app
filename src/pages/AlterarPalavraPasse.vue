@@ -9,9 +9,8 @@
     </v-row>
     <v-row class="mt-6 px-5" justify="center" no-gutters>
       <v-col cols="12">
-        <p class="title-page">Alterar Palavra Passe</p>
-        <span class="text-sub">
-          Digite seu endereço de e-mail para solicitar uma redefinição de senha
+        <p class="title-page" v-text="$trans('Alterar Palavra Passe')"></p>
+        <span class="text-sub" v-text="$trans('Digite seu endereço de e-mail para solicitar uma redefinição de senha')">
         </span>
 
         <v-form class="mt-4">
@@ -22,8 +21,7 @@
             prepend-inner-icon="mdi-email-outline"
           ></v-text-field>
   
-          <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027">
-            Enviar
+          <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027" v-text="$trans('Enviar')">
           </v-btn>
         </v-form>
       </v-col>

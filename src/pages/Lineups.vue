@@ -41,7 +41,8 @@
 
                   <v-col cols="12" md="12">
                       <v-btn class="azeret btn-text" block large color="#CD2027" dark>
-                          <v-icon>mdi-ticket-confirmation-outline</v-icon> Bilhetes
+                          <v-icon>mdi-ticket-confirmation-outline</v-icon> 
+                          <span v-text="$trans('Bilhetes')"></span>
                       </v-btn>
                   </v-col>
               </v-row>

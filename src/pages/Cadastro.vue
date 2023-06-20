@@ -9,7 +9,7 @@
     </v-row>
     <v-row class="mt-6 px-5" justify="center" no-gutters>
       <v-col cols="12">
-        <p class="text-entrar">Registrar</p>
+        <p class="text-entrar"></p>
         <v-form>
           <v-text-field
             outlined
@@ -46,18 +46,15 @@
             v-model="user.repassword"
           ></v-text-field>
   
-          <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027" @click="onRegister" :loading="isLoading" :disabled="isLoading">
-            Registrar
+          <v-btn class="btn-enviar pa-6 mt-4" block color="#CD2027" @click="onRegister" :loading="isLoading" :disabled="isLoading" v-text="$trans('Registrar')">
           </v-btn>
         </v-form>
       </v-col>
       <v-col class="mt-6 d-flex justify-center" cols="12" no-gutters>
-        <span class="text-registrar">
-          Já tem uma conta?
-          <v-btn text class="mt-n1 px-0 btn-registrar" @click="$router.push('/login')">
-            Entrar
-          </v-btn>
+        <span class="text-registrar" v-text="$trans('Já tem uma conta?')">
         </span>
+        <v-btn text class="mt-n1 px-0 btn-registrar" @click="$router.push('/login')" v-text="$trans('Entrar')">
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
