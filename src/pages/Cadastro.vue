@@ -13,21 +13,21 @@
         <v-form>
           <v-text-field
             outlined
-            label="Nome Completo"
-            placeholder="Nome Completo"
+            :label="$trans('Nome Completo')"
+            :placeholder="$trans('Nome Completo')"
             prepend-inner-icon="mdi-account-outline"
             v-model="user.name"
           ></v-text-field>
           <v-text-field
             outlined
-            label="Email"
+            :label="$trans('Email')"
             placeholder="abc@email.com"
             prepend-inner-icon="mdi-email-outline"
             v-model="user.email"
           ></v-text-field>
           <v-text-field
             outlined
-            label="Palavra Passe"
+            :label="$trans('Palavra Passe')"
             placeholder="**********"
             prepend-inner-icon="mdi-key-outline"
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -37,7 +37,7 @@
           ></v-text-field>
           <v-text-field
             outlined
-            label="Confirmar Palavra Passe"
+            :label="$trans('Confirmar Palavra Passe')"
             placeholder="**********"
             prepend-inner-icon="mdi-key-outline"
             :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -81,21 +81,21 @@
         ...mapActions('users', ['register']),
       async onRegister () {
             if (!this.user.name || !this.user.email || !this.user.password || !this.user.repassword) {
-                this.$eventHub.$emit('snackBar', {color: 'error', message: 'Preencha todos os campos'})
+                this.$eventHub.$emit('snackBar', {color: 'error', message: $trans('Preencha todos os campos')})
                 return
             }
 
           if (this.user.password != this.user.repassword) {
-              this.$eventHub.$emit('snackBar', {color: 'error', message: 'Senhas não conferem'})
+              this.$eventHub.$emit('snackBar', {color: 'error', message: $trans('Senhas não conferem')})
               return
           }
 
           const r = await this.register(this.user)
           if (r) {
-              this.$eventHub.$emit('snackBar', {color: 'success', message: 'Usuário registrado com sucesso'})
+              this.$eventHub.$emit('snackBar', {color: 'success', message: $trans('Usuário registrado com sucesso')})
               this.$router.push('/login')
           } else {
-              this.$eventHub.$emit('snackBar', {color: 'error', message: 'Erro ao registrar usuário'})
+              this.$eventHub.$emit('snackBar', {color: 'error', message: $trans('Erro ao registrar usuário')})
           }
       }
     }

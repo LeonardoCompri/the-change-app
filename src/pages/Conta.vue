@@ -1,5 +1,5 @@
 <template>
-    <v-container class="box">
+    <v-container class="box pb-8">
         <v-row>
             <v-col cols="12" class="text-center">
                 <v-avatar size="120">

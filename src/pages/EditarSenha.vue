@@ -10,8 +10,8 @@
 
       <v-row class="mt-6 px-5">
           <v-col cols="12">
-              <p class="text-entrar">Nova Palavra Passe</p>
-              <p class="subTitle">Escolha uma nova palavra passe que não seja semelhante à anterior.</p>
+              <p class="text-entrar">{{ $trans('Nova Palavra Passe') }}</p>
+              <p class="subTitle">{{ $trans('Escolha uma nova palavra passe que não seja semelhante à anterior.') }}</p>
           </v-col>
       </v-row>
 
@@ -21,7 +21,7 @@
         <v-form>
             <v-text-field
                     outlined
-                    label="Palavra Passe"
+                    :label="$trans('Palavra Passe')"
                     placeholder="**********"
                     prepend-inner-icon="mdi-key-outline"
                     :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -31,7 +31,7 @@
             ></v-text-field>
             <v-text-field
                     outlined
-                    label="Confirmar Palavra Passe"
+                    :label="$trans('Confirmar Palavra Passe')"
                     placeholder="**********"
                     prepend-inner-icon="mdi-key-outline"
                     :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -71,12 +71,12 @@ import {mapActions, mapGetters} from "vuex";
         async onUpdate () {
 
             if (!this.user.password || !this.user.repassword) {
-                this.$eventHub.$emit('snackBar', {color: 'error', message: 'Preencha todos os campos'})
+                this.$eventHub.$emit('snackBar', {color: 'error', message: $trans('Preencha todos os campos')})
                 return
             }
 
             if (this.user.password != this.user.repassword) {
-                this.$eventHub.$emit('snackBar', {color: 'error', message: 'Senhas não conferem'})
+                this.$eventHub.$emit('snackBar', {color: 'error', message: $trans('Senhas não conferem')})
                 return
             }
 
@@ -91,10 +91,10 @@ import {mapActions, mapGetters} from "vuex";
 
             const r = await this.updateProfile(form)
             if (r) {
-                this.$eventHub.$emit('snackBar', {color: 'success', message: 'Senha editada com sucesso'})
+                this.$eventHub.$emit('snackBar', {color: 'success', message: $trans('Senha editada com sucesso')})
                 this.$router.push('/profile')
             } else {
-                this.$eventHub.$emit('snackBar', {color: 'error', message: 'Erro ao editar senha'})
+                this.$eventHub.$emit('snackBar', {color: 'error', message: $trans('Erro ao editar senha')})
             }
             this.isLoading = false
         },

@@ -16,7 +16,7 @@
         <v-form class="mt-4">
           <v-text-field
             outlined
-            label="Email"
+            :label="$trans('Email')"
             placeholder="abc@email.com"
             prepend-inner-icon="mdi-email-outline"
           ></v-text-field>

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="box overflow-x-hidden pt-0">
+  <v-container class="box overflow-x-hidden pt-0 pb-8">
       <div class="box-inicio mt-0" :style="`margin: -12px !important; display: flex !important`">
 
           <div class="d-flex flex-column aling-center"
@@ -358,7 +358,7 @@
 
 <style scoped>
   .box{
-    height: 100%;
+    height: calc(100vh - 80px);
     background-color: #060518;
   }
 

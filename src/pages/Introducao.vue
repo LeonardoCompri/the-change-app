@@ -137,5 +137,4 @@ export default {
     padding-top: 40%
 }
 
-.btn-next {}
 </style>

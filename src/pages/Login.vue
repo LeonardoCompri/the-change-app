@@ -13,14 +13,14 @@
       <v-form>
         <v-text-field
           outlined
-          label="Email"
+          :label="$trans('Email')"
           placeholder="abc@email.com"
           prepend-inner-icon="mdi-email-outline"
           v-model="user.email"
         ></v-text-field>
         <v-text-field
           outlined
-          label="Palavra chave"
+          :label="$trans('Palavra Passe')"
           placeholder="**********"
           prepend-inner-icon="mdi-key-outline"
           :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -34,7 +34,7 @@
             <v-switch
               v-model="switch1"
               inset
-              label="Remember Me"
+              :label="$trans('Lembre-me')"
               class="mt-0"
               style=""
             ></v-switch>

@@ -103,7 +103,7 @@
                         </v-list-item-icon>
 
                         <v-list-item-content>
-                            <v-list-item-title>Terminar sessão</v-list-item-title>
+                            <v-list-item-title>{{ $trans('Terminar sessão') }}</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list>

@@ -25,7 +25,7 @@
       </v-col>
       <v-col class="mt-6 d-flex justify-center" cols="12" no-gutters>
         <span class="text-registrar">
-          Reenviar código em
+          {{ $trans('Reenviar código em') }}
           <v-btn text class="px-0 btn-clock">
             0:20
           </v-btn>

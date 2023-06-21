@@ -9,7 +9,7 @@
     </v-row>
       <v-row class="mt-6 px-5">
           <v-col cols="12">
-              <p class="text-entrar">Editar conta</p>
+              <p class="text-entrar">{{$trans('Editar conta')}}</p>
           </v-col>
       </v-row>
 
@@ -30,21 +30,21 @@
                       </template>
                   </v-avatar>
 
-                  <v-btn text class="ml-2" @click="onClickUpdatePhoto">Alterar Foto de Perfil</v-btn>
+                  <v-btn text class="ml-2" @click="onClickUpdatePhoto">{{ $trans('Alterar Foto de Perfil') }}</v-btn>
                   <input @change="onSelectedPhoto" type="file" hidden ref="inputPhoto" accept="image/*" >
               </v-col>
           </v-row>
         <v-form>
           <v-text-field
             outlined
-            label="Nome Completo"
-            placeholder="Nome Completo"
+            :label="$trans('Nome Completo')"
+            :placeholder="$trans('Nome Completo')"
             prepend-inner-icon="mdi-account-outline"
             v-model="user.name"
           ></v-text-field>
           <v-text-field
             outlined
-            label="Email"
+            :label="$trans('Email')"
             placeholder="abc@email.com"
             prepend-inner-icon="mdi-email-outline"
             v-model="user.email"
@@ -91,10 +91,10 @@ import {mapActions, mapGetters} from "vuex";
 
             const r = await this.updateProfile(form)
             if (r) {
-                this.$eventHub.$emit('snackBar', {color: 'success', message: 'Perfil editado com sucesso'})
+                this.$eventHub.$emit('snackBar', {color: 'success', message: $trans('Perfil editado com sucesso')})
                 this.$router.push('/profile')
             } else {
-                this.$eventHub.$emit('snackBar', {color: 'error', message: 'Erro ao editar perfil'})
+                this.$eventHub.$emit('snackBar', {color: 'error', message: $trans('Erro ao editar perfil')})
             }
             this.isLoading = false
         },

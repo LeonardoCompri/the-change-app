@@ -25,7 +25,7 @@
                         <div class="contentCard">
                             <div class="descricao">
                                 <p class="title mb-1">{{ line.name }}</p>
-                                <p class="category mb-0">Vídeo</p>
+                                <p class="category mb-0">{{ $trans('Vídeo') }}</p>
                             </div>
                             
                             <img src="/icons/play.svg" class="play">
